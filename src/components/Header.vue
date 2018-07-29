@@ -27,6 +27,7 @@ export default {
   display: flex
   align-items: center
   justify-content: space-between
+  z-index: 100
 
   @media screen and (max-width: 1024px)
     width: 760px !important
@@ -39,6 +40,7 @@ export default {
   h1
     font-size: 1.414em
     font-weight: 500
+    color: #FFF
 
 ul
   display: inline-block
@@ -46,13 +48,17 @@ ul
 
   li
     display: inline
-    padding-left: 20px
+    padding-left: 30px
 
     a
       text-decoration: none
+      color: #FFF
 
     a:hover
       box-shadow: inset 0px -1px 0 0 #735290
       transition: box-shadow 0.2s ease-out;
+
+    button
+      color: #FFF
 
 </style>
