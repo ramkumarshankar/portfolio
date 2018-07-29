@@ -2,7 +2,10 @@
   <div class="home">
     <Hero v-bind:headline='headline' />
     <div class="container">
-    <h1>Featured</h1>
+      <h2>I design and build digital products</h2>
+      <h3>I design and build digital products</h3>
+      <h4>I design and build digital products</h4>
+      <p>This is some paragraph copy. Let's see how it looks</p>
     </div>
     <img src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -43,3 +46,6 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+</style>
