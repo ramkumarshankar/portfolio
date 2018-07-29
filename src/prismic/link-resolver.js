@@ -4,7 +4,7 @@ export default (doc) => {
   if (doc.type === 'home') {
     return '/'
   }
-  // If it is a Repeatable Custom Type with the API ID of "page" (must contain a UID field)
+  // If it is a Repeatable Custom Type with the API ID of "project" (must contain a UID field)
   if (doc.type === 'project') {
     return '/project/' + doc.uid
   }

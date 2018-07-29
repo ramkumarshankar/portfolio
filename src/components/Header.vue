@@ -1,12 +1,12 @@
 <template>
   <header>
-    <div class="header-inner">
-      <h1>Ramkumar Shankar</h1>
+    <div class="header-inner mx-auto absolute left-0 right-0">
+      <h1 class="site-title">Ramkumar Shankar</h1>
       <nav>
         <ul>
           <li><a href="#">Work</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><button class="secondary">Say hello</button></li>
         </ul>
       </nav>
     </div>
@@ -21,13 +21,24 @@ export default {
 
 <style lang="stylus" scoped>
 .header-inner
-  padding: 0px 100px
+  max-width: 960px
+  margin: auto
+  padding: 20px 0px
   display: flex
   align-items: center
   justify-content: space-between
 
+  @media screen and (max-width: 1024px)
+    width: 760px !important
+
+  @media screen and (max-width: 800px)
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: 100% !important;
+
   h1
     font-size: 1.414em
+    font-weight: 500
 
 ul
   display: inline-block
@@ -36,8 +47,12 @@ ul
   li
     display: inline
     padding-left: 20px
-    
-    a 
+
+    a
       text-decoration: none
+
+    a:hover
+      box-shadow: inset 0px -1px 0 0 #735290
+      transition: box-shadow 0.2s ease-out;
 
 </style>

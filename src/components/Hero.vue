@@ -1,18 +1,27 @@
 <template>
   <div class='hero-section'>
-    <h1>I’m a creative developer based in Sydney, Australia</h1>
+    <div class='container'>
+      <h1 class='page-headline'>{{ headline }}</h1>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Hero'
+  name: 'Hero',
+  props: ['headline']
 }
 </script>
 
 <style lang="stylus" scoped>
 .hero-section
-  background #DDD
-  width 100%
-  height 500px
+  display: flex
+  flex-direction: column
+  padding: 150px 0px 100px 0px
+
+h1.page-headline
+  width: 70%
+
+  @media screen and (max-width: 800px)
+    width: 100% !important;
 </style>

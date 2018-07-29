@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Header />
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/typography.styl'
+@import './styles/main.styl'
 
 body, html
   margin 0
