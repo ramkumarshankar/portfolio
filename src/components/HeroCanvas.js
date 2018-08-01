@@ -1,17 +1,21 @@
 const circleColours = ['#DA4167', '#404E7C', '#735290']
 
 class Circle {
-  constructor (canvasEl) {
+  constructor (canvasEl, type = null) {
     this.velocity = {
       x: Math.random() < 0.5 ? Math.random() : Math.random() * -1,
       y: Math.random() < 0.5 ? Math.random() : Math.random() * -1
     }
-    this.color = circleColours[Math.floor(Math.random() * circleColours.length)]
     this.position = {
       x: Math.random() * canvasEl.width,
       y: Math.random() * canvasEl.height
     }
-    this.radius = 10
+    if (type === 'invisible') {
+      this.radius = 0
+    } else {
+      this.radius = 10
+      this.color = circleColours[Math.floor(Math.random() * circleColours.length)]
+    }
   }
 
   update (canvasEl) {
@@ -42,8 +46,12 @@ export default class LandingCanvas {
     this.ctx = this.canvasEl.getContext('2d')
     this.reqAnim = null
     this.circles = []
+    this.points = []
     for (let i = 0; i < 20; i++) {
       this.circles.push(new Circle(this.canvasEl))
+    }
+    for (let i = 0; i < 10; i++) {
+      this.points.push(new Circle(this.canvasEl, 'invisible'))
     }
   }
 
@@ -56,9 +64,11 @@ export default class LandingCanvas {
   }
 
   update () {
-    // this.circle.update(this.canvasEl)
-    for (let i = 0; i < this.circles.length; i++) {
-      this.circles[i].update(this.canvasEl)
+    for (let i = 0; i < this.points.length; i++) {
+      this.points[i].update(this.canvasEl)
+    }
+    for (let j = 0; j < this.circles.length; j++) {
+      this.circles[j].update(this.canvasEl)
     }
   }
 
@@ -68,8 +78,30 @@ export default class LandingCanvas {
     for (let i = 0; i < this.circles.length; i++) {
       this.circles[i].draw(this.ctx)
     }
+    // console.log(this.points[0].position.x)
+    for (let i = 0; i < this.points.length; i++) {
+      let point = this.points[i]
+      for (let j = 0; j < this.circles.length; j++) {
+        let circle = this.circles[j]
+        let distance = this.calculateDistance(point.position, circle.position)
+        // console.log(distance)
+        if (distance < 400) {
+          // console.log('stroke')
+          this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+          this.ctx.beginPath()
+          this.ctx.moveTo(point.position.x, point.position.y)
+          this.ctx.lineTo(circle.position.x, circle.position.y)
+          this.ctx.closePath()
+          this.ctx.stroke()
+        }
+      }
+    }
     this.update()
     this.reqAnim = requestAnimationFrame(this.draw.bind(this))
+  }
+
+  calculateDistance (point1, point2) {
+    return (Math.hypot(point2.x - point1.x, point2.y - point1.y))
   }
 
   stop () {
@@ -79,9 +111,5 @@ export default class LandingCanvas {
   resize () {
     this.canvasEl.width = this.canvasEl.parentElement.clientWidth * window.devicePixelRatio
     this.canvasEl.height = this.canvasEl.parentElement.clientHeight * window.devicePixelRatio
-    // this.circles = []
-    // for (let i = 0; i < 20; i++) {
-      // this.circles.push(new Circle(this.canvasEl))
-    // }
   }
 }

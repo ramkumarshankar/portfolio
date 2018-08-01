@@ -39,6 +39,7 @@ export default {
   flex-direction: column
   padding: 150px 0px 150px 0px
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50)
+  margin-bottom: 50px
 
 h1.page-headline
   width: 70%
