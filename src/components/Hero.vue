@@ -39,7 +39,7 @@ export default {
   flex-direction: column
   padding: 150px 0px 150px 0px
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50)
-  margin-bottom: 50px
+  margin-bottom: 20px
 
 h1.page-headline
   width: 70%
@@ -48,7 +48,7 @@ h1.page-headline
   @media screen and (max-width: 800px)
     width: 100% !important;
 
-canvas 
+canvas
   position: absolute
   top: 0
   left: 0

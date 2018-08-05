@@ -2,20 +2,14 @@
   <div class="home">
     <Hero v-bind:headline='headline' />
     <div class="container">
-      <h1>My work</h1>
+      <h1>Featured Work</h1>
       <p>I care about design, user experience and clean, maintainable code.</p>
+      <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
+        <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
+        :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image"
+        :link="item.featured_projects" />
+      </section>
     </div>
-    <section v-for="(project, index) in projects" :key="'project-' + index">
-      <!-- <template> -->
-        <prismic-rich-text :field="project.primary.title"/>
-        <section v-for="(item, index) in project.items" :key="'project-item-' + index">
-          <!-- <p>{{item.featured_projects}}</p> -->
-          <prismic-link  :field="item.featured_projects">
-            Click here
-          </prismic-link>
-        </section>
-      <!-- </template> -->
-    </section>
     <!-- <img src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -25,6 +19,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
+import ProjectTile from '@/components/ProjectTile.vue'
 
 export default {
   name: 'home',
@@ -37,11 +32,12 @@ export default {
   },
   components: {
     HelloWorld,
-    Hero
+    Hero,
+    ProjectTile
   },
   methods: {
     getContent (uid) {
-      this.$prismic.client.getSingle('homepage').then((document) => {
+      this.$prismic.client.getSingle('homepage', { fetchLinks: ['project.title', 'project.image', 'project.short_description'] }).then((document) => {
         console.log(document)
         console.log(document.data.body)
         this.docID = document.id
@@ -60,4 +56,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.projects-section
+  display: flex
+  flex-wrap: wrap
 </style>
