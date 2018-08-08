@@ -6,8 +6,7 @@
       <p>I care about design, user experience and clean, maintainable code.</p>
       <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
         <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
-        :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image"
-        :link="item.featured_projects" />
+        :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
       </section>
     </div>
     <!-- <img src="../assets/logo.png">

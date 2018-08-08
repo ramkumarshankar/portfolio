@@ -5,18 +5,30 @@
       <!-- <img src="http://placekitten.com/800/300" /> -->
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
+      <Tags :tags="tags" />
+      <!-- <ul>
+        <li v-for="(tag, index) in tags" v-bind:key="index">
+          {{tag}}
+        </li>
+      </ul> -->
     </prismic-link>
   </div>
 </template>
 
 <script>
+import Tags from '@/components/Tags'
+
 export default {
   name: 'ProjectTile',
   props: {
     title: String,
     description: String,
     link: Object,
-    image: Object
+    image: Object,
+    tags: Array
+  },
+  components: {
+    Tags
   }
 }
 </script>
