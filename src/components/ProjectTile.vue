@@ -6,11 +6,6 @@
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
       <Tags :tags="tags" />
-      <!-- <ul>
-        <li v-for="(tag, index) in tags" v-bind:key="index">
-          {{tag}}
-        </li>
-      </ul> -->
     </prismic-link>
   </div>
 </template>

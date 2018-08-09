@@ -39,6 +39,6 @@ export default {
   background-color: #4A4A4A
   color: #FFF
   width: auto !important
-  border-radius 50px
+  border-radius 2px
 </style>
 
