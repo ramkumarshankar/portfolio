@@ -31,6 +31,10 @@ export default {
 <style lang="stylus" scoped>
 h2
   font-weight: 700
+  margin-bottom: 10px
+
+p
+  margin-bottom: 5px
 
 .project-tile
   flex-basis: 50%
@@ -40,9 +44,16 @@ h2
     flex-basis: 100%
     padding: 0 !important
 
+  &:not(:first-child)
+    > a > img
+      width: 100%
+      height: 200px
+      object-fit: cover;
+
   &:nth-child(odd)
     padding-left: 20px
 
   &:nth-child(even)
     padding-right: 20px
+
 </style>

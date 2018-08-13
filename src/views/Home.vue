@@ -2,8 +2,7 @@
   <div class="home">
     <Hero v-bind:headline='headline' />
     <div class="container">
-      <h1>Featured Work</h1>
-      <p>I care about design, user experience and clean, maintainable code.</p>
+      <h1 class="section-header">Featured</h1> 
       <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
         <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
         :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
@@ -55,6 +54,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+h1.section-header
+  margin-bottom: 30px
+  
 .projects-section
   display: flex
   flex-wrap: wrap
