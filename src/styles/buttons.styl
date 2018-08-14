@@ -1,5 +1,17 @@
 @import './colors.styl'
 
+button.primary 
+  background: $button-color
+  border: none
+  border-radius: 2px
+  padding: 5px 20px
+  font-size: 16px
+  transition: all 0.2s
+  color: #FFF
+
+button.primary:hover
+  background: darken($button-color, 20)
+
 button.secondary 
   background: transparent
   border: 2px solid $button-color
