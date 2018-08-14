@@ -2,12 +2,19 @@
   <div class="home">
     <Hero v-bind:headline='headline' />
     <div class="container">
-      <h1 class="section-header">Featured</h1> 
-      <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
-        <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
-        :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
-      </section>
+      <div class="projects">
+        <h3 class="section-header">I create delightful user experiences with clean, maintainable code</h3>
+        <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
+          <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
+          :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
+        </section>
+      </div>
+      <div class="contact-block">
+        <h3 class="section-header">I am deeply passionate about the potential of design and technology to create positive, meaningful change.</h3>
+        <button class="primary">Get in touch</button>
+      </div>
     </div>
+    <page-footer />
     <!-- <img src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -18,6 +25,7 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
 import ProjectTile from '@/components/ProjectTile.vue'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'home',
@@ -31,7 +39,8 @@ export default {
   components: {
     HelloWorld,
     Hero,
-    ProjectTile
+    ProjectTile,
+    PageFooter
   },
   methods: {
     getContent (uid) {
@@ -54,8 +63,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-h1.section-header
+h3.section-header
+  margin-top: 30px
   margin-bottom: 30px
+
+div.projects
+  border-bottom: solid 1px #DDD
+
+div.contact-block
+  margin-bottom: 50px
   
 .projects-section
   display: flex
