@@ -3,7 +3,7 @@
     <Hero v-bind:headline='headline' />
     <div class="container">
       <div class="projects">
-        <h3 class="section-header">I create delightful user experiences with clean, maintainable code</h3>
+        <h2 class="section-header">Featured Work</h2>
         <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
           <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
           :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-h3.section-header
+h2.section-header
   margin-top: 30px
   margin-bottom: 30px
 
