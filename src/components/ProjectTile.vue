@@ -73,7 +73,7 @@ div.overlay
     color: #FFF
 
 // div.image-container:hover
-//   img 
+//   img
 //     opacity: 0.5
 
 //   div.overlay
@@ -93,7 +93,7 @@ div.overlay
     padding: 0  0 40px 0 !important
 
   &:hover
-    a > div.image-container > img 
+    a > div.image-container > img
       opacity: 0.4
 
     a > div.image-container > div.overlay
