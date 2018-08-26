@@ -82,7 +82,7 @@ div.projects
 
 div.contact-block
   margin-bottom: 50px
-  
+
 .projects-section
   display: flex
   flex-wrap: wrap
