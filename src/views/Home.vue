@@ -8,6 +8,7 @@
           <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
           :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
         </section>
+        <div class="more-projects-block"><a href="#">More projects &#10141;</a></div>
       </div>
       <contact-section></contact-section>
     </div>
@@ -62,12 +63,22 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../styles/main.styl'
+
 h2.section-header
   margin-top: 30px
   margin-bottom: 30px
 
 div.projects
   border-bottom: solid 1px #DDD
+  padding-bottom: 30px
+
+  div.more-projects-block
+    text-align: right
+
+  a
+    display: inline-block
+    color: $link-color
 
 div.contact-block
   margin-bottom: 50px
