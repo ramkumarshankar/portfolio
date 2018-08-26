@@ -6,6 +6,7 @@ import router from './router'
 
 import '@ibm/type/css/ibm-type.min.css'
 import 'fractures/dist/fractures.css'
+import 'socicon/css/socicon.css'
 
 import linkResolver from './prismic/link-resolver'
 
