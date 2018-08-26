@@ -2,16 +2,19 @@
   <div id="app">
     <Header :isFixed="this.$router.currentRoute.name === 'home'" />
     <router-view/>
+    <page-footer />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    PageFooter
   }
 }
 </script>

@@ -12,7 +12,6 @@
       </div>
       <contact-section></contact-section>
     </div>
-    <page-footer />
     <!-- <img src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -24,7 +23,6 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
 import ProjectTile from '@/components/ProjectTile.vue'
 import ContactSection from '@/components/ContactSection.vue'
-import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'home',
@@ -39,8 +37,7 @@ export default {
     HelloWorld,
     Hero,
     ProjectTile,
-    ContactSection,
-    PageFooter
+    ContactSection
   },
   methods: {
     getContent (uid) {
