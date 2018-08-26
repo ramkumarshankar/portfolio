@@ -48,10 +48,9 @@ div.image-container
   position: relative
   margin-bottom: 5px
   border-radius: 2px
-  transition: all 0.3s ease-in
 
-img
-  transition: all 0.2s ease-in
+  img
+    transition: all 0.2s ease-in
 
 div.overlay
   opacity: 0
@@ -73,13 +72,13 @@ div.overlay
     padding: 10px 20px
     color: #FFF
 
-div.image-container:hover
-  img 
-    opacity: 0.5
+// div.image-container:hover
+//   img 
+//     opacity: 0.5
 
-  div.overlay
-    opacity: 1
-    transform: scaleY(1)
+//   div.overlay
+//     opacity: 1
+//     transform: scaleY(1)
 
 .project-tile
   position: relative
@@ -92,6 +91,14 @@ div.image-container:hover
     // padding-right: 1.5rem;
     // width: 100% !important;
     padding: 0  0 40px 0 !important
+
+  &:hover
+    a > div.image-container > img 
+      opacity: 0.4
+
+    a > div.image-container > div.overlay
+      opacity: 1
+      transform: scaleY(1)
 
   &:first-child
     flex-basis: 100%
