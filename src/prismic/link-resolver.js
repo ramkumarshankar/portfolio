@@ -6,7 +6,7 @@ export default (doc) => {
   }
   // If it is a Repeatable Custom Type with the API ID of "project" (must contain a UID field)
   if (doc.type === 'project') {
-    return '/project/' + doc.uid
+    return '/work/' + doc.uid
   }
 
   // Default to the root
