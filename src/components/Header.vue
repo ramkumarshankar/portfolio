@@ -65,10 +65,13 @@ ul
     padding-left: 30px
 
   a
-  text-decoration: none
+    text-decoration: none
+    padding-bottom: 5px
+    &.router-link-exact-active
+      box-shadow: inset 0px -2px 0 0 #735290
 
-  a:hover
-    box-shadow: inset 0px -1px 0 0 #735290
-    transition: box-shadow 0.2s ease-out;
+    &:hover
+      box-shadow: inset 0px -2px 0 0 #735290
+      transition: box-shadow 0.2s ease-out;
 
 </style>
