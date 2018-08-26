@@ -17,7 +17,7 @@
 export default {
   name: 'Header',
   props: {
-    isFixed: Boolean,
+    isFixed: Boolean
   },
   computed: {
     headerClasses () {
