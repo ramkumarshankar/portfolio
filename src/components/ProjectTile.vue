@@ -1,7 +1,14 @@
 <template>
   <div class="project-tile">
     <prismic-link :field="link">
-      <prismic-image :field="image" />
+      <div class="image-container">
+        <prismic-image :field="image" />
+        <div class="overlay">
+          <div>
+            View Project
+          </div>
+        </div>
+      </div>
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
       <Tags :tags="tags" />
@@ -28,6 +35,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 h2
   font-weight: 700
   margin-bottom: 5px
@@ -35,17 +43,63 @@ h2
 p
   margin-bottom: 5px
 
+div.image-container
+  overflow: hidden
+  position: relative
+  margin-bottom: 5px
+  border-radius: 2px
+  transition: all 0.3s ease-in
+
+img
+  transition: all 0.2s ease-in
+
+div.overlay
+  opacity: 0
+  transform-origin: 50% 0%
+  transform: scaleY(0)
+  position: absolute
+  width: 100%
+  height: 100%
+  top:0
+  left:0
+  display: flex
+  justify-content: flex-end
+  align-items: flex-start
+  transition: all 0.2s ease-in
+
+  div
+    margin-right: 10px
+    background: #DA4167
+    padding: 10px 20px
+    color: #FFF
+
+div.image-container:hover
+  img 
+    opacity: 0.5
+
+  div.overlay
+    opacity: 1
+    transform: scaleY(1)
+
 .project-tile
   position: relative
   flex-basis: 50%
   padding-bottom: 40px
+
+  @media screen and (max-width: 600px)
+    flex-basis: 100%
+    // padding-left: 1.5rem;
+    // padding-right: 1.5rem;
+    // width: 100% !important;
+    padding: 0  0 40px 0 !important
 
   &:first-child
     flex-basis: 100%
     padding: 0 0 40px 0 !important
 
   &:not(:first-child)
-    > a > img
+    > a > div.image-container > img
+    // > a > img
       width: 100%
       height: 250px
       object-fit: cover;
