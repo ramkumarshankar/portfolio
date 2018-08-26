@@ -9,10 +9,7 @@
           :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
         </section>
       </div>
-      <div class="contact-block">
-        <h3 class="section-header">I am deeply passionate about the potential of design and technology to create positive, meaningful change.</h3>
-        <button class="primary">Get in touch</button>
-      </div>
+      <contact-section></contact-section>
     </div>
     <page-footer />
     <!-- <img src="../assets/logo.png">
@@ -25,6 +22,7 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
 import ProjectTile from '@/components/ProjectTile.vue'
+import ContactSection from '@/components/ContactSection.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
 export default {
@@ -40,6 +38,7 @@ export default {
     HelloWorld,
     Hero,
     ProjectTile,
+    ContactSection,
     PageFooter
   },
   methods: {
