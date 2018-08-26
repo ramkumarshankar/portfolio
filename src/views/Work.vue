@@ -16,4 +16,3 @@ export default {
 h1.page-headline
   margin-top: 50px
 </style>
-
