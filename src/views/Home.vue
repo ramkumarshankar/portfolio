@@ -46,7 +46,6 @@ export default {
     getContent (uid) {
       this.$prismic.client.getSingle('homepage', { fetchLinks: ['project.title', 'project.image', 'project.short_description'] }).then((document) => {
         console.log(document)
-        console.log(document.data.body)
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
         this.projects = document.data.body
@@ -55,9 +54,6 @@ export default {
   },
   created () {
     this.getContent()
-  },
-  mounted () {
-    console.log(this.$prismic)
   }
 }
 </script>
