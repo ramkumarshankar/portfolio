@@ -33,7 +33,7 @@ export default {
 
 .tag
   // display: inline-block
-  padding: 2px 10px
+  padding: 5px 10px
   margin-top: 5px
   margin-right: 10px
   font-size: 0.75em
