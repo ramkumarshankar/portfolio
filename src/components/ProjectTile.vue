@@ -1,8 +1,7 @@
 <template>
   <div class="project-tile">
-    <prismic-link  :field="link">
+    <prismic-link :field="link">
       <prismic-image :field="image" />
-      <!-- <img src="http://placekitten.com/800/300" /> -->
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
       <Tags :tags="tags" />
@@ -31,18 +30,19 @@ export default {
 <style lang="stylus" scoped>
 h2
   font-weight: 700
-  margin-bottom: 10px
+  margin-bottom: 5px
 
 p
   margin-bottom: 5px
 
 .project-tile
+  position: relative
   flex-basis: 50%
-  padding: 20px 0px
+  padding-bottom: 40px
 
   &:first-child
     flex-basis: 100%
-    padding: 0 !important
+    padding: 0 0 40px 0 !important
 
   &:not(:first-child)
     > a > img
