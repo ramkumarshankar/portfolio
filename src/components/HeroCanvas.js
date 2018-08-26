@@ -45,6 +45,10 @@ export default class LandingCanvas {
     this.canvasEl = canvasEl
     this.ctx = this.canvasEl.getContext('2d')
     this.reqAnim = null
+    this.generatePoints()
+  }
+
+  generatePoints () {
     this.circles = []
     this.points = []
     for (let i = 0; i < 20; i++) {
@@ -111,5 +115,6 @@ export default class LandingCanvas {
   resize () {
     this.canvasEl.width = this.canvasEl.parentElement.clientWidth * window.devicePixelRatio
     this.canvasEl.height = this.canvasEl.parentElement.clientHeight * window.devicePixelRatio
+    this.generatePoints()
   }
 }
