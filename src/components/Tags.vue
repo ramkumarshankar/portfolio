@@ -28,10 +28,13 @@ export default {
 <style lang="stylus" scoped>
 .tags
   // background: transparent
+  display: flex
+  flex-wrap: wrap
 
 .tag
   // display: inline-block
   padding: 2px 10px
+  margin-top: 5px
   margin-right: 10px
   font-size: 0.75em
   text-transform: uppercase
