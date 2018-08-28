@@ -14,12 +14,14 @@ export default {
   },
   computed: {
     displayedTags () {
-      let displayedTags = this.tags
-      let index = displayedTags.indexOf('featured')
-      if (index !== -1) {
-        displayedTags.splice(index, 1)
+      if (this.tags) {
+        let displayedTags = this.tags
+        let index = displayedTags.indexOf('featured')
+        if (index !== -1) {
+          displayedTags.splice(index, 1)
+        }
+        return displayedTags
       }
-      return displayedTags
     }
   }
 }
@@ -44,4 +46,3 @@ export default {
   width: auto !important
   border-radius 2px
 </style>
-
