@@ -103,6 +103,8 @@ div.overlay
   &:first-child
     flex-basis: 100%
     padding: 0 0 40px 0 !important
+    > a > div.image-container > img
+      width: 100%
 
   &:not(:first-child)
     > a > div.image-container > img
