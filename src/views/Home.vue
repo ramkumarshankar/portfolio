@@ -46,12 +46,10 @@ export default {
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
         this.projects = document.data.body
-        this.$Progress.finish()
       })
     }
   },
   created () {
-    this.$Progress.start()
     this.getContent()
   }
 }
