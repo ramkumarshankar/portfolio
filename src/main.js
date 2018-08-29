@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import PrismicVue from 'prismic-vue'
+import VueProgressBar from 'vue-progressbar'
 
 import App from './App.vue'
 import router from './router'
@@ -15,6 +16,12 @@ Vue.config.productionTip = false
 Vue.use(PrismicVue, {
   endpoint: 'https://ramkumarshankar.cdn.prismic.io/api/v2',
   linkResolver
+})
+
+Vue.use(VueProgressBar, {
+  color: '#735290',
+  thickness: '5px',
+  autoFinish: true
 })
 
 new Vue({

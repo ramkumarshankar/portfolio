@@ -3,6 +3,7 @@
     <Header :isFixed="this.$router.currentRoute.name === 'home'" />
     <router-view/>
     <page-footer />
+    <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 

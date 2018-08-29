@@ -29,10 +29,12 @@ export default {
   },
   methods: {
     getContent () {
+      this.startProgress()
       this.$prismic.client.query(
         this.$prismic.Predicates.at('document.type', 'project'),
         { fetch: ['project.title', 'project.short_description', 'project.image', 'project.link'], orderings: '[document.last_publication_date desc]' }
       ).then((response) => {
+        this.setProgress(95)
         this.projects = response.results
         if (!this.tagList) {
           this.buildTagList()
@@ -55,19 +57,32 @@ export default {
       this.tagList = fullTagList.filter((tag, i, arr) => arr.indexOf(tag) === i)
     },
     retrieveProjects (tag) {
+      // Initialise progress bar
+      this.setProgress(0)
       console.log(tag + ' selected')
       if (tag === 'all') {
         this.getContent()
       } else {
+        this.startProgress()
         this.$prismic.client.query(
           this.$prismic.Predicates.at('document.tags', [tag]),
           { fetch: ['project.title', 'project.short_description', 'project.image', 'project.link'], orderings: '[document.last_publication_date desc]' }
         ).then((response) => {
+          this.setProgress(95)
           this.projects = response.results
           // this.buildTagList()
           // response is the response object, response.results holds the documents
         })
       }
+    },
+    startProgress () {
+      this.$Progress.start()
+    },
+    setProgress (value) {
+      this.$Progress.set(value)
+    },
+    finishProgress () {
+      this.$Progress.finish()
     }
   },
   created () {
