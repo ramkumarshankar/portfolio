@@ -1,7 +1,8 @@
 <template>
   <div class='projects'>
     <project-tile v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
-    :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :link="item.featured_projects" />
+    :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :link="item.featured_projects"
+    :tags="item.featured_projects.tags" />
   </div>
 </template>
 
