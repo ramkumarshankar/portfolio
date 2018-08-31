@@ -1,5 +1,5 @@
 <template>
-  <div class="project-tile">
+  <div class="tile" :class="featured ? 'featured' : ''">
     <prismic-link :field="link">
       <div class="image-container">
         <prismic-image :field="image" />
@@ -26,7 +26,8 @@ export default {
     description: String,
     link: Object,
     image: Object,
-    tags: Array
+    tags: Array,
+    featured: Boolean
   },
   components: {
     Tags
@@ -35,6 +36,22 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
+.tile
+  &:hover
+    a > div.image-container > img
+      opacity: 0.4
+
+    a > div.image-container > div.overlay
+      opacity: 1
+      transform: scaleY(1)
+
+  &:not(:first-child)
+    > a > div.image-container > img
+    // > a > img
+      width: 100%
+      height: 250px
+      object-fit: cover
 
 h2
   font-weight: 700
@@ -72,51 +89,12 @@ div.overlay
     padding: 10px 20px
     color: #FFF
 
-// div.image-container:hover
-//   img
-//     opacity: 0.5
+div.image-container:hover
+  img
+    opacity: 0.5
 
-//   div.overlay
-//     opacity: 1
-//     transform: scaleY(1)
-
-.project-tile
-  position: relative
-  flex-basis: 50%
-  padding-bottom: 40px
-
-  @media screen and (max-width: 600px)
-    flex-basis: 100%
-    // padding-left: 1.5rem;
-    // padding-right: 1.5rem;
-    // width: 100% !important;
-    padding: 0  0 40px 0 !important
-
-  &:hover
-    a > div.image-container > img
-      opacity: 0.4
-
-    a > div.image-container > div.overlay
-      opacity: 1
-      transform: scaleY(1)
-
-  &:first-child
-    flex-basis: 100%
-    padding: 0 0 40px 0 !important
-    > a > div.image-container > img
-      width: 100%
-
-  &:not(:first-child)
-    > a > div.image-container > img
-    // > a > img
-      width: 100%
-      height: 250px
-      object-fit: cover;
-
-  &:nth-child(odd)
-    padding-left: 20px
-
-  &:nth-child(even)
-    padding-right: 20px
+  div.overlay
+    opacity: 1
+    transform: scaleY(1)
 
 </style>

@@ -4,22 +4,23 @@
       <h1 class="page-headline">Work</h1>
       <filter-menu :filterItems='tagList' v-on:filterChanged='retrieveProjects' />
       <section class="projects-section">
-        <project-tile v-for="(project, index) in projects" :key="'project-' + index"
-        :title="$prismic.richTextAsPlain(project.data.title)" :description="$prismic.richTextAsPlain(project.data.short_description)" :image="project.data.image" :link="project.data.link" />
+        <projects-grid :projects="projects" />
+        <!-- <project-tile v-for="(project, index) in projects" :key="'project-' + index"
+        :title="$prismic.richTextAsPlain(project.data.title)" :description="$prismic.richTextAsPlain(project.data.short_description)" :image="project.data.image" :link="project.data.link" /> -->
       </section>
     </div>
   </div>
 </template>
 
 <script>
-import ProjectTile from '@/components/ProjectTile.vue'
+import ProjectsGrid from '@/components/ProjectsGrid.vue'
 import FilterMenu from '@/components/FilterMenu.vue'
 
 export default {
   name: 'work',
   components: {
     FilterMenu,
-    ProjectTile
+    ProjectsGrid
   },
   data () {
     return {
@@ -34,8 +35,10 @@ export default {
         this.$prismic.Predicates.at('document.type', 'project'),
         { fetch: ['project.title', 'project.short_description', 'project.image', 'project.link'], orderings: '[document.last_publication_date desc]' }
       ).then((response) => {
+        // console.log(response.results[0])
         this.setProgress(95)
         this.projects = response.results
+        console.log(this.projects)
         if (!this.tagList) {
           this.buildTagList()
         }
@@ -96,7 +99,7 @@ h1.page-headline
   margin-top: 50px
   margin-bottom: 20px
 
-.projects-section
-  display: flex
-  flex-wrap: wrap
+// .projects-section
+//   display: flex
+//   flex-wrap: wrap
 </style>
