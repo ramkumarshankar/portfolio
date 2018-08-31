@@ -44,6 +44,7 @@ h1.site-title
   margin: auto
   padding: 20px 0px
   display: flex
+  flex-wrap: wrap
   align-items: center
   justify-content: space-between
   z-index: 100
@@ -52,9 +53,14 @@ h1.site-title
     width: 760px !important
 
   @media screen and (max-width: 800px)
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    width: 100% !important;
+    padding-left: 1.5rem
+    padding-right: 1.5rem
+    width: 100% !important
+
+nav
+
+  @media screen and (max-width: 500px)
+      margin-top: 20px
 
 ul
   display: inline-block
@@ -62,7 +68,10 @@ ul
 
   li
     display: inline
-    padding-left: 30px
+    // padding-right: 30px
+
+    &:not(:last-child)
+      padding-right: 30px
 
   a
     text-decoration: none
