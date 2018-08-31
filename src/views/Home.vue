@@ -2,12 +2,9 @@
   <div class="home">
     <Hero v-bind:headline='headline' />
     <div class="container">
-      <div class="projects">
+      <div class="projects-section">
         <h2 class="section-header">Featured Work</h2>
-        <section class="projects-section" v-for="(project, index) in projects" :key="'project-' + index">
-          <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
-          :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
-        </section>
+        <projects-grid :projects="projects" />
         <div class="more-projects-block"><router-link :to="{name: 'work'}">More projects &#10141;</router-link></div>
       </div>
       <contact-section></contact-section>
@@ -21,6 +18,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
+import ProjectsGrid from '@/components/ProjectsGrid.vue'
 import ProjectTile from '@/components/ProjectTile.vue'
 import ContactSection from '@/components/ContactSection.vue'
 
@@ -36,6 +34,7 @@ export default {
   components: {
     HelloWorld,
     Hero,
+    ProjectsGrid,
     ProjectTile,
     ContactSection
   },
@@ -45,7 +44,7 @@ export default {
         console.log(document)
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
-        this.projects = document.data.body
+        this.projects = document.data.body[0].items
       })
     }
   },
@@ -62,7 +61,10 @@ h2.section-header
   margin-top: 30px
   margin-bottom: 30px
 
-div.projects
+div.contact-block
+  margin-bottom: 50px
+
+div.projects-section
   border-bottom: solid 1px #DDD
   padding-bottom: 30px
 
@@ -72,11 +74,4 @@ div.projects
   a
     display: inline-block
     color: $link-color
-
-div.contact-block
-  margin-bottom: 50px
-
-.projects-section
-  display: flex
-  flex-wrap: wrap
 </style>
