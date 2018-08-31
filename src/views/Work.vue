@@ -4,7 +4,7 @@
       <h1 class="page-headline">Work</h1>
       <filter-menu :filterItems='tagList' v-on:filterChanged='retrieveProjects' />
       <section class="projects-section">
-        <projects-grid :projects="projects" />
+        <!-- <projects-grid :projects="projects" /> -->
         <!-- <project-tile v-for="(project, index) in projects" :key="'project-' + index"
         :title="$prismic.richTextAsPlain(project.data.title)" :description="$prismic.richTextAsPlain(project.data.short_description)" :image="project.data.image" :link="project.data.link" /> -->
       </section>
@@ -38,7 +38,7 @@ export default {
         // console.log(response.results[0])
         this.setProgress(95)
         this.projects = response.results
-        console.log(this.projects)
+        // console.log(this.projects)
         if (!this.tagList) {
           this.buildTagList()
         }
@@ -53,7 +53,6 @@ export default {
       let fullTagList = ['all'].concat(...rawList)
       fullTagList.forEach((tag, index) => {
         if (tag === 'featured' || tag === 'Featured') {
-          console.log('inside if')
           fullTagList.splice(index, 1)
         }
       })
