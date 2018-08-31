@@ -8,7 +8,7 @@
           <project-tile v-for="(item, index) in project.items" :key="'project-item-' + index"
           :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :tags="item.featured_projects.tags" :link="item.featured_projects" />
         </section>
-        <div class="more-projects-block"><a href="#">More projects &#10141;</a></div>
+        <div class="more-projects-block"><router-link :to="{name: 'work'}">More projects &#10141;</router-link></div>
       </div>
       <contact-section></contact-section>
     </div>
