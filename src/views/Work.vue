@@ -4,9 +4,7 @@
       <h1 class="page-headline">Work</h1>
       <filter-menu :filterItems='tagList' v-on:filterChanged='retrieveProjects' />
       <section class="projects-section">
-        <!-- <projects-grid :projects="projects" /> -->
-        <!-- <project-tile v-for="(project, index) in projects" :key="'project-' + index"
-        :title="$prismic.richTextAsPlain(project.data.title)" :description="$prismic.richTextAsPlain(project.data.short_description)" :image="project.data.image" :link="project.data.link" /> -->
+        <projects-grid :projects="projects" />
       </section>
     </div>
   </div>
@@ -35,10 +33,8 @@ export default {
         this.$prismic.Predicates.at('document.type', 'project'),
         { fetch: ['project.title', 'project.short_description', 'project.image', 'project.link'], orderings: '[document.last_publication_date desc]' }
       ).then((response) => {
-        // console.log(response.results[0])
         this.setProgress(95)
-        this.projects = response.results
-        // console.log(this.projects)
+        this.buildProjectsList(response.results)
         if (!this.tagList) {
           this.buildTagList()
         }
@@ -72,10 +68,23 @@ export default {
         ).then((response) => {
           this.setProgress(95)
           this.projects = response.results
-          // this.buildTagList()
-          // response is the response object, response.results holds the documents
+          this.buildProjectsList(response.results)
         })
       }
+    },
+    buildProjectsList (projectsResponse) {
+      let displayedProjects = []
+      projectsResponse.forEach((project, index) => {
+        displayedProjects.push({
+          title: project.data.title,
+          short_description: project.data.short_description,
+          image: project.data.image,
+          link: project.data.link,
+          tags: project.tags
+        })
+      })
+      console.log(displayedProjects)
+      this.projects = displayedProjects
     },
     startProgress () {
       this.$Progress.start()
@@ -97,8 +106,4 @@ export default {
 h1.page-headline
   margin-top: 50px
   margin-bottom: 20px
-
-// .projects-section
-//   display: flex
-//   flex-wrap: wrap
 </style>

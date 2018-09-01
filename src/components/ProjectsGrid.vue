@@ -1,8 +1,8 @@
 <template>
   <div class='projects'>
     <project-tile v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
-    :title="$prismic.richTextAsPlain(item.featured_projects.data.title)" :description="$prismic.richTextAsPlain(item.featured_projects.data.short_description)" :image="item.featured_projects.data.image" :link="item.featured_projects"
-    :tags="item.featured_projects.tags" />
+    :title="$prismic.richTextAsPlain(item.title)" :description="$prismic.richTextAsPlain(item.short_description)" :image="item.image" :link="item.link"
+    :tags="item.tags" />
   </div>
 </template>
 
@@ -14,55 +14,8 @@ export default {
   props: {
     projects: Array
   },
-  data () {
-    return {
-      projectInfo: []
-    }
-  },
   components: {
     ProjectTile
-  },
-  methods: {
-    getProjectInfo () {
-      this.projectInfo = []
-      console.log(this.$router.currentRoute.name)
-      if (this.$router.currentRoute.name === 'home') {
-        this.projects.forEach((project, index) => {
-          console.log('adding!')
-          this.projectInfo.$set({
-            title: project.featured_projects.data.title,
-            short_description: project.featured_projects.data.short_description,
-            image: project.featured_projects.data.image,
-            link: project.featured_projects
-          }, index)
-          // this.projectInfo.push({
-          //   title: project.featured_projects.data.title,
-          //   short_description: project.featured_projects.data.short_description,
-          //   image: project.featured_projects.data.image,
-          //   link: project.featured_projects
-          // })
-          console.log(this.projectInfo)
-        })
-        console.log(this.projectInfo)
-      } else if (this.$router.currentRoute.name === 'work') {
-        this.projects.forEach((project, index) => {
-          this.projectInfo.push({
-            title: project.data.title,
-            short_description: project.data.short_description,
-            image: project.data.image,
-            link: project.data.link
-          })
-        })
-      }
-    }
-  },
-  created () {
-    console.log('created')
-    // this.getProjectInfo()
-  },
-  beforeUpdate () {
-    console.log('beforeUpdate')
-    // this.getProjectInfo()
   }
 }
 </script>

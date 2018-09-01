@@ -44,8 +44,22 @@ export default {
         console.log(document)
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
-        this.projects = document.data.body[0].items
+        let projectsResponse = document.data.body[0].items
+        let displayedProjects = []
+        projectsResponse.forEach((project, index) => {
+          displayedProjects.push({
+            title: project.featured_projects.data.title,
+            short_description: project.featured_projects.data.short_description,
+            image: project.featured_projects.data.image,
+            link: project.featured_projects,
+            tags: project.featured_projects.tags
+          })
+        })
+        this.projects = displayedProjects
       })
+    },
+    prepareProjectsList () {
+
     }
   },
   created () {

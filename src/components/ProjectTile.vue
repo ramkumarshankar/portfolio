@@ -11,7 +11,7 @@
       </div>
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
-      <Tags :tags="tags" />
+      <Tags :tags="this.$router.currentRoute.name === 'home' ? tags : null" />
     </prismic-link>
   </div>
 </template>
@@ -38,6 +38,10 @@ export default {
 <style lang="stylus" scoped>
 
 .tile
+  & > a > div.image-container > img
+    width: 100%
+    object-fit: cover
+
   &:hover
     a > div.image-container > img
       opacity: 0.4
@@ -48,10 +52,7 @@ export default {
 
   &:not(:first-child)
     > a > div.image-container > img
-    // > a > img
-      width: 100%
       height: 250px
-      object-fit: cover
 
 h2
   font-weight: 700
