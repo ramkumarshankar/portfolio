@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     getContent () {
+      // Start progress bar
       this.startProgress()
       this.$prismic.client.query(
         this.$prismic.Predicates.at('document.type', 'project'),
@@ -67,7 +68,6 @@ export default {
           { fetch: ['project.title', 'project.short_description', 'project.image', 'project.link'], orderings: '[document.last_publication_date desc]' }
         ).then((response) => {
           this.setProgress(95)
-          this.projects = response.results
           this.buildProjectsList(response.results)
         })
       }
@@ -76,6 +76,7 @@ export default {
       let displayedProjects = []
       projectsResponse.forEach((project, index) => {
         displayedProjects.push({
+          id: project.id,
           title: project.data.title,
           short_description: project.data.short_description,
           image: project.data.image,
@@ -83,7 +84,7 @@ export default {
           tags: project.tags
         })
       })
-      console.log(displayedProjects)
+      // console.log(displayedProjects)
       this.projects = displayedProjects
     },
     startProgress () {
