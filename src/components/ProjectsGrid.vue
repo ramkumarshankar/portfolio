@@ -1,9 +1,9 @@
 <template>
-  <div class='projects'>
+  <transition-group name="projectlist" tag="div" class="projects">
     <project-tile v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
     :title="$prismic.richTextAsPlain(item.title)" :description="$prismic.richTextAsPlain(item.short_description)" :image="item.image" :link="item.link"
     :tags="item.tags" />
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -38,5 +38,15 @@ export default {
   @media screen and (max-width: 600px)
     grid-column-start: 1
     grid-column-end: 2
+
+.projectlist-enter-active, .projectlist-leave-active
+  transition: all 0.3s;
+
+.projectlist-enter, .projectlist-leave-to /* .list-leave-active below version 2.1.8 */ 
+  opacity: 0;
+  transform: scale3d(0.8, 0.8, 0.8)
+
+.projectlist-move
+  transition: transform 0.5s;
 
 </style>
