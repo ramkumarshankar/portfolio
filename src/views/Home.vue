@@ -4,13 +4,14 @@
     <div class="container">
       <div class="projects-section">
         <h2 class="section-header">Featured Work</h2>
-        <projects-grid :projects="projects" />
+        <section class="projects-grid">
+          <loading-indicator :loading="loading" />
+          <projects-grid :projects="projects" />
+        </section>
         <div class="more-projects-block"><router-link :to="{name: 'work'}">More projects &#10141;</router-link></div>
       </div>
       <contact-section></contact-section>
     </div>
-    <!-- <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import ProjectsGrid from '@/components/ProjectsGrid.vue'
 import ProjectTile from '@/components/ProjectTile.vue'
 import ContactSection from '@/components/ContactSection.vue'
@@ -28,18 +30,21 @@ export default {
     return {
       docID: '',
       headline: '',
-      projects: []
+      projects: [],
+      loading: false
     }
   },
   components: {
     HelloWorld,
     Hero,
+    LoadingIndicator,
     ProjectsGrid,
     ProjectTile,
     ContactSection
   },
   methods: {
     getContent (uid) {
+      this.loading = true
       this.$prismic.client.getSingle('homepage', { fetchLinks: ['project.title', 'project.image', 'project.short_description'] }).then((document) => {
         console.log(document)
         this.docID = document.id
@@ -56,6 +61,7 @@ export default {
           })
         })
         this.projects = displayedProjects
+        this.loading = false
       })
     },
     prepareProjectsList () {
@@ -77,6 +83,10 @@ h2.section-header
 
 div.contact-block
   margin-bottom: 50px
+
+section.projects-grid
+  min-height: 300px
+  position:relative
 
 div.projects-section
   border-bottom: solid 1px #DDD

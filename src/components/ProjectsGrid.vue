@@ -1,6 +1,6 @@
 <template>
   <transition-group name="projectlist" tag="div" class="projects">
-    <project-tile v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
+    <project-tile v-if="projects" v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
     :title="$prismic.richTextAsPlain(item.title)" :description="$prismic.richTextAsPlain(item.short_description)" :image="item.image" :link="item.link"
     :tags="item.tags" />
   </transition-group>
@@ -8,6 +8,7 @@
 
 <script>
 import ProjectTile from '@/components/ProjectTile.vue'
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 export default {
   name: 'ProjectGrid',
@@ -15,7 +16,8 @@ export default {
     projects: Array
   },
   components: {
-    ProjectTile
+    ProjectTile,
+    LoadingIndicator
   }
 }
 </script>

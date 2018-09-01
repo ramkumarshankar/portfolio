@@ -4,6 +4,7 @@
       <h1 class="page-headline">Work</h1>
       <filter-menu :filterItems='tagList' v-on:filterChanged='retrieveProjects' />
       <section class="projects-section">
+        <loading-indicator :loading="loading" />
         <projects-grid :projects="projects" />
       </section>
     </div>
@@ -13,15 +14,18 @@
 <script>
 import ProjectsGrid from '@/components/ProjectsGrid.vue'
 import FilterMenu from '@/components/FilterMenu.vue'
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 export default {
   name: 'work',
   components: {
     FilterMenu,
-    ProjectsGrid
+    ProjectsGrid,
+    LoadingIndicator
   },
   data () {
     return {
+      loading: false,
       tagList: null,
       projects: []
     }
@@ -29,6 +33,7 @@ export default {
   methods: {
     getContent () {
       // Start progress bar
+      this.loading = true
       this.startProgress()
       this.$prismic.client.query(
         this.$prismic.Predicates.at('document.type', 'project'),
@@ -36,6 +41,7 @@ export default {
       ).then((response) => {
         this.setProgress(95)
         this.buildProjectsList(response.results)
+        this.loading = false
         if (!this.tagList) {
           this.buildTagList()
         }
@@ -58,6 +64,7 @@ export default {
     retrieveProjects (tag) {
       // Initialise progress bar
       this.setProgress(0)
+      this.loading = true
       console.log(tag + ' selected')
       if (tag === 'all') {
         this.getContent()
@@ -69,6 +76,7 @@ export default {
         ).then((response) => {
           this.setProgress(95)
           this.buildProjectsList(response.results)
+          this.loading = false
         })
       }
     },
@@ -117,4 +125,8 @@ export default {
 h1.page-headline
   margin-top: 50px
   margin-bottom: 20px
+
+section.projects-section
+  position: relative
+  min-height: 300px
 </style>
