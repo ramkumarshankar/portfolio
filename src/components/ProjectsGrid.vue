@@ -42,9 +42,9 @@ export default {
 .projectlist-enter-active, .projectlist-leave-active
   transition: all 0.3s;
 
-.projectlist-enter, .projectlist-leave-to /* .list-leave-active below version 2.1.8 */ 
+.projectlist-enter, .projectlist-leave-to
   opacity: 0;
-  transform: scale3d(0.8, 0.8, 0.8)
+  transform: scale3d(0.6, 0.6, 0.6)
 
 .projectlist-move
   transition: transform 0.5s;
