@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       tagList: null,
-      projects: null
+      projects: []
     }
   },
   methods: {
@@ -73,19 +73,29 @@ export default {
       }
     },
     buildProjectsList (projectsResponse) {
-      let displayedProjects = []
-      projectsResponse.forEach((project, index) => {
-        displayedProjects.push({
-          id: project.id,
-          title: project.data.title,
-          short_description: project.data.short_description,
-          image: project.data.image,
-          link: project.data.link,
-          tags: project.tags
-        })
+      // Remove projects that are not in response
+      this.projects = this.projects.filter(project => {
+        let indexInArray = projectsResponse.map(projectItem => {
+          return projectItem['id']
+        }).indexOf(project.id)
+        return indexInArray !== -1
       })
-      // console.log(displayedProjects)
-      this.projects = displayedProjects
+      // Add additional projects to the array
+      projectsResponse.forEach((projectItem, index) => {
+        let indexInArray = this.projects.map(project => {
+          return project['id']
+        }).indexOf(projectItem.id)
+        if (indexInArray === -1) {
+          this.projects.push({
+            id: projectItem.id,
+            title: projectItem.data.title,
+            short_description: projectItem.data.short_description,
+            image: projectItem.data.image,
+            link: projectItem.data.link,
+            tags: projectItem.tags
+          })
+        }
+      })
     },
     startProgress () {
       this.$Progress.start()
