@@ -17,7 +17,7 @@ import FilterMenu from '@/components/FilterMenu.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 export default {
-  name: 'work',
+  name: 'Work',
   components: {
     FilterMenu,
     ProjectsGrid,
