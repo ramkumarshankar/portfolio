@@ -32,12 +32,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../styles/main.styl'
 .light
   color: #fff
 
 h1.site-title
   font-size: 1.414em
   font-weight: 500
+  margin: 0
 
 .header-inner
   max-width: 960px
@@ -75,6 +77,8 @@ ul
 
   a
     text-decoration: none
+    font-size: 1.125em
+    color: $text-color
     padding-bottom: 5px
     &.router-link-exact-active
       box-shadow: inset 0px -2px 0 0 #735290
@@ -83,4 +87,7 @@ ul
       box-shadow: inset 0px -2px 0 0 #735290
       transition: box-shadow 0.2s ease-out;
 
+  button
+    font-size: 1.125em
+    color: $text-color
 </style>
