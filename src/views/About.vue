@@ -35,7 +35,6 @@ export default {
     getContent () {
       this.loading = true
       this.$prismic.client.getSingle('aboutpage').then((document) => {
-        console.log(document)
         this.docID = document.id
         this.title = this.$prismic.richTextAsPlain(document.data.title)
         this.highlight = document.data.highlight

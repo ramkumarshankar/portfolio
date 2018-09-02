@@ -70,7 +70,6 @@ export default {
         this.projects = displayedProjects
         // Get teaching section
         let teachingSection = document.data.body[1].primary
-        console.log(teachingSection)
         this.teachingHeading = teachingSection.teachingheading
         this.teachingBody = teachingSection.teachingbody
         //Get contact section
