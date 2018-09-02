@@ -1,13 +1,16 @@
 <template>
   <div class="contact-block">
-    <h3>I am deeply passionate about the potential of design and technology to create positive, meaningful change.</h3>
+    <prismic-rich-text :field="text" />
     <button class="primary">Get in touch</button>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'ContactSection',
+  props: {
+    text: Array
+  }
 }
 </script>
 

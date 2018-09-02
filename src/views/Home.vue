@@ -10,8 +10,8 @@
         </section>
         <div class="more-projects-block"><router-link :to="{name: 'work'}">More projects &#10141;</router-link></div>
       </div>
-      <teaching-section />
-      <contact-section />
+      <teaching-section :title="$prismic.richTextAsPlain(teachingHeading)" :body="teachingBody"  />
+      <contact-section :text="contactText" />
     </div>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
       docID: '',
       headline: '',
       projects: [],
+      teachingHeading: '',
+      teachingBody: '',
+      contactText: '',
       loading: false
     }
   },
@@ -52,6 +55,7 @@ export default {
         console.log(document)
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
+        // Get projects
         let projectsResponse = document.data.body[0].items
         let displayedProjects = []
         projectsResponse.forEach((project, index) => {
@@ -64,6 +68,14 @@ export default {
           })
         })
         this.projects = displayedProjects
+        // Get teaching section
+        let teachingSection = document.data.body[1].primary
+        console.log(teachingSection)
+        this.teachingHeading = teachingSection.teachingheading
+        this.teachingBody = teachingSection.teachingbody
+        //Get contact section
+        let contactSection = document.data.body[2].primary
+        this.contactText = contactSection.contacttext
         this.loading = false
       })
     },
