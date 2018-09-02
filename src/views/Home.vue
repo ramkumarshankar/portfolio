@@ -72,7 +72,7 @@ export default {
         let teachingSection = document.data.body[1].primary
         this.teachingHeading = teachingSection.teachingheading
         this.teachingBody = teachingSection.teachingbody
-        //Get contact section
+        // Get contact section
         let contactSection = document.data.body[2].primary
         this.contactText = contactSection.contacttext
         this.loading = false
