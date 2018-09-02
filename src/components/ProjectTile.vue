@@ -1,6 +1,7 @@
 <template>
   <div class="tile" :class="featured ? 'featured' : ''">
-    <prismic-link :field="link">
+    <!-- <prismic-link :field="link"> -->
+    <a>
       <div class="image-container">
         <prismic-image :field="image" />
         <div class="overlay">
@@ -12,7 +13,8 @@
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
       <Tags :tags="this.$router.currentRoute.name === 'home' ? tags : null" />
-    </prismic-link>
+    </a>
+    <!-- </prismic-link> -->
   </div>
 </template>
 
@@ -48,7 +50,7 @@ export default {
 
     a > div.image-container > div.overlay
       opacity: 1
-      transform: scaleY(1)
+      // transform: scaleY(1)
 
   &:not(:first-child)
     > a > div.image-container > img
@@ -89,13 +91,5 @@ div.overlay
     background: #DA4167
     padding: 10px 20px
     color: #FFF
-
-div.image-container:hover
-  img
-    opacity: 0.5
-
-  div.overlay
-    opacity: 1
-    transform: scaleY(1)
 
 </style>
