@@ -20,7 +20,8 @@ div.contact-block
   margin-top: 30px
   margin-bottom: 50px
 
-h3
-  margin-bottom: 20px
+button 
+  margin-top: 5px
+  
 
 </style>
