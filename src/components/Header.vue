@@ -6,7 +6,7 @@
         <ul>
           <li><router-link v-bind:class="isFixed ? 'light' : ''" :to="{ name: 'work' }">Work</router-link></li>
           <li><router-link v-bind:class="isFixed ? 'light' : ''" :to="{ name: 'about' }">About</router-link></li>
-          <li><button class="secondary" v-bind:class="isFixed ? 'light' : ''">Say hello</button></li>
+          <li><router-link class="secondary" :to="{ name: 'contact' }" tag="button" v-bind:class="isFixed ? 'light' : ''">Say hello</router-link></li>
         </ul>
       </nav>
     </div>
