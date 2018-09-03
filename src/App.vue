@@ -1,11 +1,6 @@
 <template>
   <div id="app">
     <Header :isFixed="this.$router.currentRoute.name === 'home'" />
-    <form name="contact" netlify hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
-    </form>
     <router-view/>
     <page-footer />
     <vue-progress-bar></vue-progress-bar>
