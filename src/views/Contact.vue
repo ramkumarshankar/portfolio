@@ -5,6 +5,7 @@
       <section class="contact-section">
         <loading-indicator :loading="loading" />
         <form name="contact" method="POST" action="/" netlify>
+          <input type="hidden" name="form-name" value="contact" />
           <div class="form-input">
             <div>
               <label for="name">Name</label>
