@@ -6,6 +6,7 @@
         <loading-indicator :loading="loading" />
         <form name="contact">
           <div class="form-input">
+            <input type="hidden" name="form-name" value="contact" />
             <div>
               <label for="name">Name</label>
               <input type="text" name="name" v-model="form.name" />
