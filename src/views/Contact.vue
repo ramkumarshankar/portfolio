@@ -4,7 +4,7 @@
       <h1 class="page-headline">{{ title }}</h1>
       <section class="contact-section">
         <loading-indicator :loading="loading" />
-        <form>
+        <form name="contact" netlify>
           <div class="form-input">
             <div>
               <label for="name">Name</label>
@@ -12,11 +12,11 @@
             </div>
             <div>
               <label for="email">Email</label>
-              <input type="email" id="mail" name="contactemail">
+              <input type="email" id="email" name="contactemail">
             </div>
             <div class="message">
-              <label for="message">Message</label>
-              <textarea id="message" name="contactmessage"></textarea>
+              <label for="contactmessage">Message</label>
+              <textarea id="contactmessage" name="contactmessage"></textarea>
             </div>
           </div>
           <button class="primary" type="submit">Send</button>
