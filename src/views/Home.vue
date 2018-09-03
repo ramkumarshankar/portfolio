@@ -52,7 +52,6 @@ export default {
     getContent (uid) {
       this.loading = true
       this.$prismic.client.getSingle('homepage', { fetchLinks: ['project.title', 'project.image', 'project.short_description'] }).then((document) => {
-        console.log(document)
         this.docID = document.id
         this.headline = this.$prismic.richTextAsPlain(document.data.headline)
         // Get projects

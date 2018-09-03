@@ -65,7 +65,6 @@ export default {
       // Initialise progress bar
       this.setProgress(0)
       this.loading = true
-      console.log(tag + ' selected')
       if (tag === 'all') {
         this.getContent()
       } else {

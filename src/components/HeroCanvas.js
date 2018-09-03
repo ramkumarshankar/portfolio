@@ -62,8 +62,7 @@ export default class LandingCanvas {
   setup () {
     window.addEventListener('resize', this.resize.bind(this))
     this.canvasEl.addEventListener('onmousemove', evt => {
-      console.log(evt.clientX)
-      console.log(evt.clientY)
+      //
     })
   }
 
