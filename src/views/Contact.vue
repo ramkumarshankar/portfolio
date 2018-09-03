@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="contact">
     <div class="container">
       <h1 class="page-headline">{{ title }}</h1>
       <section class="contact-section">
