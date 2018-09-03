@@ -4,23 +4,22 @@
       <h1 class="page-headline">{{ title }}</h1>
       <section class="contact-section">
         <loading-indicator :loading="loading" />
-        <form name="contact" method="POST" action="/" netlify>
-          <input type="hidden" name="form-name" value="contact" />
+        <form name="contact">
           <div class="form-input">
             <div>
               <label for="name">Name</label>
-              <input type="text" id="name" name="contactname">
+              <input type="text" name="name" v-model="form.name" />
             </div>
             <div>
               <label for="email">Email</label>
-              <input type="email" id="email" name="contactemail">
+              <input type="email" name="email" v-model="form.email" />
             </div>
             <div class="message">
-              <label for="contactmessage">Message</label>
-              <textarea id="contactmessage" name="contactmessage"></textarea>
+              <label for="message">Message</label>
+              <textarea name="message" v-model="form.message" />
             </div>
           </div>
-          <button class="primary" type="submit">Send</button>
+          <button class="primary" type="submit" @click.prevent="handleSubmit">Send</button>
         </form>
       </section>
     </div>
@@ -35,7 +34,12 @@ export default {
   data () {
     return {
       loading: false,
-      title: ''
+      title: '',
+      form: {
+        name: '',
+        email: '',
+        message: ''
+      }
     }
   },
   components: {
@@ -50,6 +54,22 @@ export default {
         this.title = this.$prismic.richTextAsPlain(document.data.title)
         this.loading = false
       })
+    },
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
+    },
+    handleSubmit () {
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: this.encode({ 'form-name': 'contact', ...this.form })
+      })
+        .then(() => alert('Success!'))
+        .catch(error => alert(error))
     }
   },
   created () {
