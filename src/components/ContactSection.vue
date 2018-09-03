@@ -1,7 +1,7 @@
 <template>
   <div class="contact-block">
     <prismic-rich-text :field="text" />
-    <button class="primary">Get in touch</button>
+    <router-link class="primary" :to="{ name: 'contact' }" tag="button">Get in touch</router-link>
   </div>
 </template>
 
