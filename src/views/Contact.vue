@@ -4,7 +4,7 @@
       <h1 class="page-headline">{{ title }}</h1>
       <section class="contact-section">
         <loading-indicator :loading="loading" />
-        <form name="contact" netlify>
+        <form name="contact" method="POST" action="/" netlify>
           <div class="form-input">
             <div>
               <label for="name">Name</label>
