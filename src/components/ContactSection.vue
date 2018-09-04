@@ -8,9 +8,7 @@
 <script>
 export default {
   name: 'ContactSection',
-  props: {
-    text: Array
-  }
+  props: ['text']
 }
 </script>
 

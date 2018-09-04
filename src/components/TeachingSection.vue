@@ -8,10 +8,7 @@
 <script>
 export default {
   name: 'TeachingSection',
-  props: {
-    title: String,
-    body: Array
-  }
+  props: ['title', 'body']
 }
 </script>
 
