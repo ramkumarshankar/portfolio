@@ -68,7 +68,7 @@ export default {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: this.encode({ 'form-name': 'contact', ...this.form })
       })
-        .then(() => { 
+        .then(() => {
           this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
         })
         .catch(error => alert(error))

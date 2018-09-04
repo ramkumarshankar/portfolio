@@ -87,7 +87,7 @@ export default {
   mounted () {
     if (this.contactFormSubmitted) {
       this.$notify({
-        title: "Thanks for your message!",
+        title: 'Thanks for your message!',
         text: "I'll get back to you as soon as possible",
         duration: 3000
       })
