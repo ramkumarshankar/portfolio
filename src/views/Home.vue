@@ -28,6 +28,12 @@ import ContactSection from '@/components/ContactSection.vue'
 
 export default {
   name: 'home',
+  props: {
+    contactFormSubmitted: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       docID: '',
@@ -76,9 +82,15 @@ export default {
         this.contactText = contactSection.contacttext
         this.loading = false
       })
-    },
-    prepareProjectsList () {
-
+    }
+  },
+  mounted () {
+    if (this.contactFormSubmitted) {
+      this.$notify({
+        title: "Thanks for your message!",
+        text: "I'll get back to you as soon as possible",
+        duration: 3000
+      })
     }
   },
   created () {
