@@ -92,7 +92,7 @@ export default {
       this.$notify({
         title: "Thanks for your message!",
         text: "I'll get back to you as soon as possible",
-        duration: 3000
+        duration: 30000
       })
     }
   },
