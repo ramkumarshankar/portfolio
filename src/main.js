@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import PrismicVue from 'prismic-vue'
 import VueProgressBar from 'vue-progressbar'
+import Notifications from 'vue-notification'
 
 import App from './App.vue'
 import router from './router'
@@ -23,6 +24,8 @@ Vue.use(VueProgressBar, {
   thickness: '5px',
   autoFinish: true
 })
+
+Vue.use(Notifications)
 
 new Vue({
   router,
