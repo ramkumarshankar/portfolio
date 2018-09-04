@@ -85,14 +85,11 @@ export default {
     }
   },
   mounted () {
-    console.log('inside mounted')
-    console.log(this.contactFormSubmitted)
     if (this.contactFormSubmitted) {
-      console.log('inside if')
       this.$notify({
         title: "Thanks for your message!",
         text: "I'll get back to you as soon as possible",
-        duration: 30000
+        duration: 3000
       })
     }
   },

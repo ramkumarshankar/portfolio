@@ -63,16 +63,15 @@ export default {
         .join('&')
     },
     handleSubmit () {
-      this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
-      // fetch('/', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      //   body: this.encode({ 'form-name': 'contact', ...this.form })
-      // })
-      //   .then(() => { 
-      //     this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
-      //   })
-      //   .catch(error => alert(error))
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: this.encode({ 'form-name': 'contact', ...this.form })
+      })
+        .then(() => { 
+          this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
+        })
+        .catch(error => alert(error))
     }
   },
   created () {

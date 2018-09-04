@@ -45,7 +45,7 @@ body, html
 
 .notification
   // Style of the notification itself
-  background: $dark-background
+  background: $dark-background !important
   color: #FFF
   padding: 15px 30px
   margin-bottom: 20px
