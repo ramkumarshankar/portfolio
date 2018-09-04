@@ -6,3 +6,9 @@ ID = "Ramkumar Shankar"
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "http://ramkumarshankar.netlify.com/*"
+  to = "http://ramkumar.me/:splat"
+  status = 301
+  force = true
