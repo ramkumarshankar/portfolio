@@ -27,7 +27,9 @@ export default {
   display: grid
   grid-template-columns: 0.5fr 0.5fr
   column-gap: 20px
+  grid-column-gap: 20px
   row-gap: 30px
+  grid-row-gap: 30px
   margin-bottom:30px
 
   @media screen and (max-width: 600px)

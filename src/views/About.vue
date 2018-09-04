@@ -58,7 +58,9 @@ h1.page-headline
 section.about-section
   position: relative
   column-gap: 20px
+  grid-column-gap: 20px
   row-gap: 20px
+  grid-row-gap: 20px
   min-height: 300px
   display: grid
   grid-template-columns: 0.33fr 0.66fr

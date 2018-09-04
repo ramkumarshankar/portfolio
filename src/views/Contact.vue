@@ -96,7 +96,9 @@ section.contact-section
   grid-template-columns: 0.5fr 0.5fr
   margin-bottom: 30px
   column-gap: 20px
+  grid-column-gap: 20px
   row-gap: 20px
+  grid-row-gap: 20px
 
   @media screen and (max-width: 768px)
     grid-template-columns: 1fr !important
