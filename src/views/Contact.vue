@@ -107,7 +107,7 @@ label
   font-family: $base-body-font-family
   font-weight: 600
   display: block
-  margin-bottom: 15px
+  margin-bottom: 5px
 
 input
   width:100%
