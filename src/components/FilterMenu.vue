@@ -49,6 +49,7 @@ ul
     text-transform: uppercase
     font-weight: 700
     a
+      cursor: pointer
       padding-bottom: 5px
       color: #9b9b9b
       &.active
