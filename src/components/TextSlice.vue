@@ -30,4 +30,5 @@ div.text-slice
 
 div.right-section
   padding-top: 8px
+
 </style>

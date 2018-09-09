@@ -47,7 +47,7 @@ footer
     padding-right: 1.5rem;
     width: 100% !important;
 
-ul
+ul.social-icons
   display: inline-block
   list-style-type: none
   padding: 30px 0px

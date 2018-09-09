@@ -18,7 +18,6 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import Hero from '@/components/Hero.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import ProjectsGrid from '@/components/ProjectsGrid.vue'
@@ -46,7 +45,6 @@ export default {
     }
   },
   components: {
-    HelloWorld,
     Hero,
     LoadingIndicator,
     ProjectsGrid,

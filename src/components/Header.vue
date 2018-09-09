@@ -64,30 +64,30 @@ nav
   @media screen and (max-width: 500px)
       margin-top: 20px
 
-ul
-  display: inline-block
-  list-style-type: none
+  ul
+    display: inline-block
+    list-style-type: none
 
-  li
-    display: inline
-    // padding-right: 30px
+    li
+      display: inline
+      // padding-right: 30px
 
-    &:not(:last-child)
-      padding-right: 30px
+      &:not(:last-child)
+        padding-right: 30px
 
-  a
-    text-decoration: none
-    font-size: 1.125em
-    color: $text-color
-    padding-bottom: 5px
-    &.router-link-exact-active
-      box-shadow: inset 0px -2px 0 0 #735290
+    a
+      text-decoration: none
+      font-size: 1.125em
+      color: $text-color
+      padding-bottom: 5px
+      &.router-link-exact-active
+        box-shadow: inset 0px -2px 0 0 #735290
 
-    &:hover
-      box-shadow: inset 0px -2px 0 0 #735290
-      transition: box-shadow 0.2s ease-out;
+      &:hover
+        box-shadow: inset 0px -2px 0 0 #735290
+        transition: box-shadow 0.2s ease-out;
 
-  button
-    font-size: 1.125em
-    color: $text-color
+    button
+      font-size: 1.125em
+      color: $text-color
 </style>
