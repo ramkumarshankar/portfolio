@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-inner">
-      <ul class='social-icons'>
+      <ul class='social-icons-list'>
         <li><a class="socicon-twitter" v-bind:href="twitterLink"></a></li>
         <li><a class="socicon-facebook" v-bind:href="facebookLink"></a></li>
         <li><a class="socicon-linkedin" v-bind:href="linkedinLink"></a></li>
@@ -31,7 +31,7 @@ export default {
 footer
   background-color: #1B1B1B
 
-.footer-inner
+div.footer-inner
   max-width: 960px
   margin: auto
   display: flex
@@ -47,7 +47,7 @@ footer
     padding-right: 1.5rem;
     width: 100% !important;
 
-ul.social-icons
+ul.social-icons-list
   display: inline-block
   list-style-type: none
   padding: 30px 0px
