@@ -24,6 +24,5 @@ div.text-slice
   grid-column-gap: 20px
   row-gap: 30px
   grid-row-gap: 30px
-  margin: 30px 0px
 
 </style>
