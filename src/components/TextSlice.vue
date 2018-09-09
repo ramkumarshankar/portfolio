@@ -25,4 +25,7 @@ div.text-slice
   row-gap: 30px
   grid-row-gap: 30px
 
+  @media screen and (max-width: 768px)
+    grid-template-columns: 1fr !important
+
 </style>
