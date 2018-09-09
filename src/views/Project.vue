@@ -15,12 +15,10 @@
             <text-slice v-for="(item, index) in slice.items" :key="'textslice-' + index" :heading="$prismic.richTextAsPlain(item.heading)" :body="item.paragraph" />
           </template>
           <template v-else-if="slice.slice_type === 'image'">
-              <prismic-image v-for="(item, index) in slice.items" :key="'imageslice-' + index" :field="item.image" />
+            <prismic-image class="imageslice-item" v-for="(item, index) in slice.items" :key="'imageslice-' + index" :field="item.image" />
           </template>
           <template v-else-if="slice.slice_type === 'text_highlight'">
-            <!-- <template v-for="(item, index) in slice.items"> -->
-              <prismic-rich-text v-for="(item, index) in slice.items" :key="'highlightslice-' + index" :field="item.highlight" />
-            <!-- </template> -->
+            <prismic-rich-text v-for="(item, index) in slice.items" :key="'highlightslice-' + index" :field="item.highlight" />
           </template>
         </section>
       </section>
@@ -50,16 +48,15 @@ export default {
   },
   methods: {
     getContent () {
+      this.startProgress()
       this.loading = true
       let projectUid = this.$route.params.slug
-      console.log('get content for ' + projectUid)
       this.$prismic.client.getByUID('project', projectUid).then((document) => {
         // document contains the document content
-        console.log(document)
+        this.setProgress(95)
         this.title = document.data.title
         this.description = document.data.short_description
         this.titleImage = document.data.image
-        // document.title = 'Ramkumar Shankar - Work - ' + this.title
         this.slices = document.data.body
         this.buildTagList(document.tags)
         this.loading = false
@@ -74,7 +71,19 @@ export default {
         }
         this.tags = displayedTags
       }
+    },
+    startProgress () {
+      this.$Progress.start()
+    },
+    setProgress (value) {
+      this.$Progress.set(value)
+    },
+    finishProgress () {
+      this.$Progress.finish()
     }
+  },
+  updated () {
+    document.title += ' - ' + this.$prismic.richTextAsPlain(this.title)
   },
   created () {
     this.getContent()
@@ -108,7 +117,10 @@ h1.page-headline
   width: auto !important
   border-radius 2px
 
-img.title-image
+img
   width: 100%
   object-fit: cover
+
+img.imageslice-item
+  margin-bottom: 20px
 </style>

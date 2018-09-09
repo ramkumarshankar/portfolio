@@ -29,7 +29,8 @@ const router = new Router({
     {
       path: '/work/:slug',
       name: 'project',
-      component: Project
+      component: Project,
+      meta: {title: siteTitle + ' - Work'}
     },
     {
       path: '/about',

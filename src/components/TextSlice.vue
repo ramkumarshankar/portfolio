@@ -3,7 +3,7 @@
     <div>
       <h2>{{ heading }}</h2>
     </div>
-    <div>
+    <div class='right-section'>
       <prismic-rich-text :field="body" />
     </div>
   </div>
@@ -22,10 +22,12 @@ div.text-slice
   grid-template-columns: 0.33fr 0.66fr
   column-gap: 20px
   grid-column-gap: 20px
-  row-gap: 30px
-  grid-row-gap: 30px
+  row-gap: 10px
+  grid-row-gap: 10px
 
   @media screen and (max-width: 768px)
     grid-template-columns: 1fr !important
 
+div.right-section
+  padding-top: 8px
 </style>
