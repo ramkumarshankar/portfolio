@@ -14,6 +14,34 @@ import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'App',
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: 'Ramkumar Shankar',
+    meta: [
+      // OpenGraph data (Most widely used)
+      {vmid: 'og:title', content: 'Home'},
+      {property: 'og:site_name', content: 'Ramkumar Shankar'},
+      // The list of types is available here: http://ogp.me/#types
+      {property: 'og:type', content: 'website'},
+      // Should the the same as your canonical link, see below.
+      {vmid: 'og:url', content: 'https://www.ramkumar.me/'},
+      // {property: 'og:image', content: 'https://www.my-site.com/my-special-image.jpg'},
+      // Often the same as your meta description, but not always.
+      {property: 'og:description', content: 'I am a creative developer based in Sydney, Australia. This is my portfolio.'},
+      // Twitter card
+      {name: 'twitter:card', content: 'summary'},
+      {name: 'twitter:site', content: 'https://ramkumar.me'},
+      {name: 'twitter:title', content: 'Ramkumar Shankar'},
+      {name: 'twitter:description', content: 'I am a creative developer based in Sydney, Australia. This is my portfolio.'},
+      // Your twitter handle, if you have one.
+      {name: 'twitter:creator', content: '@ramkumarshankar'},
+      // Google / Schema.org markup:
+      {itemprop: 'name', content: 'Ramkumar Shankar'},
+      {itemprop: 'description', content: 'I am a creative developer based in Sydney, Australia. This is my portfolio.'},
+      // Default
+      {name: 'description', content: 'I am a creative developer based in Sydney, Australia. This is my portfolio.'}
+    ]
+  },
   components: {
     Header,
     PageFooter

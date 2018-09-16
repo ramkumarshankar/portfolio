@@ -2,6 +2,7 @@ import Vue from 'vue'
 import PrismicVue from 'prismic-vue'
 import VueProgressBar from 'vue-progressbar'
 import Notifications from 'vue-notification'
+import Meta from 'vue-meta'
 
 import App from './App.vue'
 import router from './router'
@@ -13,6 +14,8 @@ import 'socicon/css/socicon.css'
 import linkResolver from './prismic/link-resolver'
 
 Vue.config.productionTip = false
+
+Vue.use(Meta)
 
 Vue.use(PrismicVue, {
   endpoint: 'https://ramkumarshankar.cdn.prismic.io/api/v2',

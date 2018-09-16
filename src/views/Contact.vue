@@ -32,6 +32,14 @@ import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 export default {
   name: 'Contact',
+  metaInfo: {
+    // all titles will be injected into this template
+    titleTemplate: '%s | Contact',
+    meta: [
+      {vmid: 'og:title', content: 'Contact'},
+      {vmid: 'og:url', content: 'https://www.ramkumar.me/contact/'}
+    ]
+  },
   data () {
     return {
       loading: false,

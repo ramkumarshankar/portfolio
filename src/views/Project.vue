@@ -32,6 +32,15 @@ import TextSlice from '@/components/TextSlice.vue'
 
 export default {
   name: 'Project',
+  metaInfo () {
+    return {
+      titleTemplate: '%s | Work | ' + this.$prismic.richTextAsPlain(this.title),
+      meta: [
+        { vmid: 'og:title', content: this.$prismic.richTextAsPlain(this.title) },
+        { vmid: 'og:url', content: 'https://www.ramkumar.me' + this.$router.currentRoute.path }
+      ]
+    }
+  },
   data () {
     return {
       loading: false,
@@ -82,11 +91,9 @@ export default {
       this.$Progress.finish()
     }
   },
-  updated () {
-    document.title += ' - ' + this.$prismic.richTextAsPlain(this.title)
-  },
   created () {
     this.getContent()
+    console.log(this.$router)
   }
 }
 </script>

@@ -18,6 +18,14 @@ import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 export default {
   name: 'Work',
+  metaInfo: {
+    // all titles will be injected into this template
+    titleTemplate: '%s | Work',
+    meta: [
+      {vmid: 'og:title', content: 'Work'},
+      {vmid: 'og:url', content: 'https://www.ramkumar.me/work/'}
+    ]
+  },
   components: {
     FilterMenu,
     ProjectsGrid,

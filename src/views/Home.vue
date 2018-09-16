@@ -27,6 +27,14 @@ import ContactSection from '@/components/ContactSection.vue'
 
 export default {
   name: 'home',
+  metaInfo: {
+    // all titles will be injected into this template
+    titleTemplate: '%s',
+    meta: [
+      // OpenGraph data (Most widely used)
+      {vmid: 'og:title', content: 'Home'}
+    ]
+  },
   props: {
     contactFormSubmitted: {
       type: Boolean,

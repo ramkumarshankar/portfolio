@@ -8,8 +8,6 @@ import Contact from './views/Contact.vue'
 
 Vue.use(Router)
 
-let siteTitle = 'Ramkumar Shankar'
-
 const router = new Router({
   mode: 'history',
   routes: [
@@ -17,39 +15,29 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
-      props: true,
-      meta: {title: siteTitle + ' - Home'}
+      props: true
     },
     {
       path: '/work',
       name: 'work',
-      component: Work,
-      meta: {title: siteTitle + ' - Work'}
+      component: Work
     },
     {
       path: '/work/:slug',
       name: 'project',
-      component: Project,
-      meta: {title: siteTitle + ' - Work'}
+      component: Project
     },
     {
       path: '/about',
       name: 'about',
-      component: About,
-      meta: {title: siteTitle + ' - About'}
+      component: About
     },
     {
       path: '/contact',
       name: 'contact',
-      component: Contact,
-      meta: {title: siteTitle + ' - Contact'}
+      component: Contact
     }
   ]
-})
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
-  next()
 })
 
 export default router
