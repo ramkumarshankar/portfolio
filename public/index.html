@@ -8,7 +8,8 @@
     <title>Ramkumar Shankar</title>
   </head>
   <body>
-    <form name="contact" netlify hidden>
+    <form name="contact" netlify netlify-honeypot="botfield" hidden>
+      <input name="botfield" />
       <input type="text" name="name" />
       <input type="email" name="email" />
       <textarea name="message"></textarea>

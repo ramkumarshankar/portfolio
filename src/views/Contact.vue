@@ -7,6 +7,9 @@
         <form name="contact">
           <div class="form-input">
             <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <input name="botfield" v-model="form.botfield" />
+            </p>
             <div>
               <label for="name">Name</label>
               <input type="text" name="name" v-model="form.name" />
@@ -47,7 +50,8 @@ export default {
       form: {
         name: '',
         email: '',
-        message: ''
+        message: '',
+        botfield: ''
       }
     }
   },
@@ -64,22 +68,22 @@ export default {
       })
     },
     encode (data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join('&')
+      return Object.keys(data).map(
+        key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      ).join('&')
     },
     handleSubmit () {
+      let dataToSubmit = Object.assign({}, this.form)
+      if (!dataToSubmit.botfield) {
+        delete dataToSubmit['botfield']
+      }
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: this.encode({ 'form-name': 'contact', ...this.form })
-      })
-        .then(() => {
-          this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
-        })
-        .catch(error => alert(error))
+        body: this.encode({ 'form-name': 'contact', ...dataToSubmit })
+      }).then(() => {
+        this.$router.push({ name: 'home', params: { contactFormSubmitted: true } })
+      }).catch(error => alert(error))
     }
   },
   created () {
