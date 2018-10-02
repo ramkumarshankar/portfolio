@@ -7,6 +7,11 @@
       </span>
       <h1 class="page-headline">{{ $prismic.richTextAsPlain(this.title) }}</h1>
       <p>{{ $prismic.richTextAsPlain(this.description) }}</p>
+      <div v-if='ctaTitle && ctaLink' class="cta-section">
+        <prismic-link :field="ctaLink" class="cta_link" style="margin-top:100px">
+          <span>{{ $prismic.richTextAsPlain(this.ctaTitle) }}</span>
+        </prismic-link>
+      </div>
       <prismic-image class='title-image' :field="titleImage" />
       <section class="project-detail">
         <loading-indicator :loading="loading" />
@@ -48,6 +53,8 @@ export default {
       title: '',
       description: '',
       titleImage: '',
+      ctaTitle: null,
+      ctaLink: null,
       slices: []
     }
   },
@@ -66,6 +73,8 @@ export default {
         this.title = document.data.title
         this.description = document.data.short_description
         this.titleImage = document.data.image
+        this.ctaLink = document.data.cta_link
+        this.ctaTitle = document.data.cta_text
         this.slices = document.data.body
         this.buildTagList(document.tags)
         this.loading = false
@@ -130,5 +139,22 @@ img
 
 img.imageslice-item
   margin-bottom: 20px
+
+div.cta-section
+  margin: 40px 0px
+
+.cta_link
+  background: $button-color
+  border: none
+  border-radius: 2px
+  padding: 10px 25px
+  font-size: 1.125em
+  transition: all 0.2s
+  color: #FFF
+  font-weight: 700
+  margin:0
+
+.cta_link:hover
+  background: darken($button-color, 20)
 
 </style>
