@@ -13,21 +13,21 @@
 
 <script>
 export default {
-  name: 'FilterMenu',
+  name: "FilterMenu",
   props: {
     activeIndexFromParent: {
       type: Number,
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       filterItems: [],
       activeIndex: null
-    }
+    };
   },
   methods: {
-    getTags () {
+    getTags() {
       this.$prismic.client
         .query(this.$prismic.Predicates.at("document.type", "project"), {
           // we don't need any fields
@@ -55,16 +55,16 @@ export default {
         (tag, i, arr) => arr.indexOf(tag) === i
       );
     },
-    updateSelection (index, item) {
-      this.activeIndex = index
-      this.$emit('filterChanged', item)
+    updateSelection(index, item) {
+      this.activeIndex = index;
+      this.$emit("filterChanged", item);
     }
   },
-  created () {
-    this.activeIndex = this.activeIndexFromParent
-    this.getTags()
+  created() {
+    this.activeIndex = this.activeIndexFromParent;
+    this.getTags();
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
