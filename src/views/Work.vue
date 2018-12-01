@@ -95,7 +95,7 @@ export default {
         return indexInArray !== -1;
       });
       // Add additional projects to the array
-      projectsResponse.forEach((projectItem, index) => {
+      projectsResponse.forEach(projectItem => {
         let indexInArray = this.projects
           .map(project => {
             return project["id"];
