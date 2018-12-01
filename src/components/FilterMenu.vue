@@ -41,7 +41,7 @@ export default {
     },
     buildTagList(projects) {
       let rawList = [];
-      projects.forEach((project, index) => {
+      projects.forEach(project => {
         rawList.push(project.tags);
       });
 
