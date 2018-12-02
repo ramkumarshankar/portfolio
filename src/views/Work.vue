@@ -7,6 +7,7 @@
         <loading-indicator :loading="loading"/>
         <projects-grid :projects="projects"/>
       </section>
+      <pagination :numPages=3 />
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@
 <script>
 import ProjectsGrid from "@/components/ProjectsGrid.vue";
 import FilterMenu from "@/components/FilterMenu.vue";
+import Pagination from "@/components/Pagination.vue";
 import LoadingIndicator from "@/components/LoadingIndicator.vue";
 
 export default {
@@ -29,6 +31,7 @@ export default {
   components: {
     FilterMenu,
     ProjectsGrid,
+    Pagination,
     LoadingIndicator
   },
   data() {
