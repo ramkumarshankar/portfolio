@@ -55,6 +55,7 @@ export default {
 body, html
   margin 0
   padding 0
+  scroll-behavior smooth
 
 #app
   // font-family 'IBM Plex Sans', 'Avenir', Helvetica, Arial, sans-serif

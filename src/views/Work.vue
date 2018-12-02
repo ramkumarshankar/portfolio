@@ -2,7 +2,7 @@
   <div class="work">
     <div class="container">
       <h1 class="page-headline">Work</h1>
-      <filter-menu v-on:filterChanged="retrieveProjects"/>
+      <filter-menu v-on:filterChanged="resetFilter"/>
       <section class="projects-section">
         <loading-indicator :loading="loading"/>
         <projects-grid :projects="projects"/>
@@ -40,6 +40,7 @@ export default {
       projects: [],
       numPages: 0,
       activePage: 0,
+      pageSize: 9,
       selectedTag: ''
     };
   },
@@ -56,42 +57,46 @@ export default {
             "project.image",
             "project.link"
           ],
-          orderings: "[document.last_publication_date desc]"
+          orderings: "[document.last_publication_date desc]",
+          pageSize: this.pageSize,
+          page: this.activePage
         })
         .then(response => {
           console.log(response);
           this.setProgress(95);
           this.setupPagination(response);
           this.buildProjectsList(response.results);
+          // let projectsContainer = document.getElementsByClassName("container")[0]
+          // window.scrollTo(0, projectsContainer.offsetTop);
           this.loading = false;
         });
-    },
-    retrievePage(page) {
-      console.log('page changed - ' + page);
     },
     retrieveProjects(tag) {
       // Initialise progress bar
       this.setProgress(0);
-      this.selectedTag = tag;
       this.loading = true;
       if (tag === "all") {
         this.getContent();
       } else {
         this.startProgress();
         this.$prismic.client
-          .query(this.$prismic.Predicates.at("document.tags", [this.selectedTag]), {
+          .query(this.$prismic.Predicates.at("document.tags", [tag]), {
             fetch: [
               "project.title",
               "project.short_description",
               "project.image",
               "project.link"
             ],
-            orderings: "[document.last_publication_date desc]"
+            orderings: "[document.last_publication_date desc]",
+            pageSize: this.pageSize,
+            page: this.activePage
           })
           .then(response => {
             this.setProgress(95);
             this.setupPagination(response);
             this.buildProjectsList(response.results);
+            // let projectsContainer = document.getElementsByClassName("container")[0]
+            // window.scrollTo(0, projectsContainer.offsetTop);
             this.loading = false;
           });
       }
@@ -125,6 +130,15 @@ export default {
         }
       });
     },
+    resetFilter(tag) {
+      this.selectedTag = tag;
+      this.activePage = 1;
+      this.retrieveProjects(this.selectedTag);
+    },
+    retrievePage(page) {
+      this.activePage = page;
+      this.retrieveProjects(this.selectedTag);
+    },
     setupPagination(response) {
         this.numPages = response.total_pages;
         this.activePage = response.page;
@@ -141,6 +155,7 @@ export default {
   },
   created() {
     this.selectedTag = "all";
+    this.activePage = 1;
     this.getContent();
   }
 };
