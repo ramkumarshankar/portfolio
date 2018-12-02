@@ -1,17 +1,19 @@
 <template>
   <ul class="pagination-container">
     <li class="previous">
-      <a href="#">&#8249;</a>
+      <a v-if="activePage === 1" class="disabled">&#8249;</a>
+      <a v-else href="#" disabled>&#8249;</a>
     </li>
     <li
-      :class="'page ' + ((index === currentPage) ? 'active' : '')"
       v-for="(item, index) in pages"
+      :class="'page ' + ((activePage === item.name) ? 'active' : '')"
       v-bind:key="index"
     >
-      <a href="#">{{ item.name }}</a>
+      <a @click="updatePage(item.name)">{{ item.name }}</a>
     </li>
-    <li class="previous">
-      <a href="#">&#8250;</a>
+    <li class="next">
+      <a v-if="activePage === numPages" class="disabled">&#8250;</a>
+      <a v-else href="#" disabled>&#8250;</a>
     </li>
   </ul>
 </template>
@@ -21,6 +23,10 @@ export default {
   name: "Pagination",
   props: {
     numPages: {
+      type: Number,
+      required: true
+    },
+    activePage: {
       type: Number,
       required: true
     }
@@ -40,6 +46,11 @@ export default {
       }
       return range;
     }
+  },
+  methods: {
+    updatePage(page) {
+      console.log("page clicked: " + page);
+    }
   }
 };
 </script>
@@ -47,15 +58,25 @@ export default {
 <style lang="stylus" scoped>
 @import '../styles/main.styl';
 
+a {
+  font-weight: bold;
+  font-size: 0.8em;
+  cursor: pointer;
+
+  &.disabled {
+    opacity: 0.3;
+  }
+}
+
 ul.pagination-container {
   text-align: center;
   display: block;
   margin: 20px 0px;
 
   li {
-    padding: 8px 15px;
+    padding: 5px 12px;
     display: inline-block;
-    margin: 0px 10px;
+    margin: 0px 5px;
 
     &.page {
       border-radius: 2px;
@@ -63,6 +84,14 @@ ul.pagination-container {
 
     a {
       color: $text-color;
+
+      &:hover:not(.disabled) {
+        // TODO: hover state
+        color: $link-color;
+        padding-bottom: 5px;
+        box-shadow: inset 0px -2px 0 0 $link-color;
+        transition: box-shadow 0.2s ease-out;
+      }
     }
 
     &.active {
@@ -70,6 +99,10 @@ ul.pagination-container {
 
       a {
         color: #FFF;
+
+        &:hover:not(.disabled) {
+        // TODO: hover state
+        }
       }
     }
   }
