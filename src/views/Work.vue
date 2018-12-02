@@ -50,7 +50,10 @@ export default {
       this.loading = true;
       this.startProgress();
       this.$prismic.client
-        .query(this.$prismic.Predicates.at("document.type", "project"), this.defaultQueryParams())
+        .query(
+          this.$prismic.Predicates.at("document.type", "project"),
+          this.defaultQueryParams()
+        )
         .then(response => {
           this.setProgress(95);
           this.setupPagination(response);
@@ -69,7 +72,10 @@ export default {
       } else {
         this.startProgress();
         this.$prismic.client
-          .query(this.$prismic.Predicates.at("document.tags", [tag]), this.defaultQueryParams())
+          .query(
+            this.$prismic.Predicates.at("document.tags", [tag]),
+            this.defaultQueryParams()
+          )
           .then(response => {
             this.setProgress(95);
             this.setupPagination(response);
