@@ -7,7 +7,7 @@
       </span>
       <h1 class="page-headline">{{ $prismic.richTextAsPlain(this.title) }}</h1>
       <p>{{ $prismic.richTextAsPlain(this.description) }}</p>
-      <div v-if='ctaTitle.length !== 0' class="cta-section">
+      <div v-if='ctaTitle && ctaTitle.length !== 0' class="cta-section">
         <prismic-link :field="ctaLink" class="cta_link" style="margin-top:100px">
           <span>{{ $prismic.richTextAsPlain(this.ctaTitle) }}</span>
         </prismic-link>
@@ -102,7 +102,6 @@ export default {
   },
   created () {
     this.getContent()
-    console.log(this.$router)
   }
 }
 </script>
