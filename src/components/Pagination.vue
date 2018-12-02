@@ -1,5 +1,5 @@
 <template>
-  <ul class="pagination-container">
+  <ul v-show="numPages > 1" class="pagination-container">
     <li class="previous">
       <a v-if="activePage === 1" class="disabled">&#8249;</a>
       <a v-else href="#">&#8249;</a>
@@ -54,7 +54,7 @@ export default {
         console.log('same page - returning');
         return;
       }
-      console.log("page clicked: " + page);
+      this.$emit("pageChanged", page);
       // TODO: emit event to reload content
     }
   }
