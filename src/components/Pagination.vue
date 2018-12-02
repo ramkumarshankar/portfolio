@@ -6,10 +6,11 @@
     </li>
     <li
       v-for="(item, index) in pages"
+      @click="updatePage(item.name)"
       :class="'page ' + ((activePage === item.name) ? 'active' : '')"
       v-bind:key="index"
     >
-      <a @click="updatePage(item.name)" :class="((activePage === item.name) ? 'active' : '')">{{ item.name }}</a>
+      <a :class="((activePage === item.name) ? 'active' : '')">{{ item.name }}</a>
     </li>
     <li class="next">
       <a v-if="activePage === numPages" class="disabled">&#8250;</a>
@@ -66,7 +67,6 @@ export default {
 a {
   font-weight: bold;
   font-size: 0.8em;
-  cursor: pointer;
 
   &.disabled {
     opacity: 0.3;
@@ -82,9 +82,14 @@ ul.pagination-container {
     padding: 5px 12px;
     display: inline-block;
     margin: 0px 5px;
+    cursor: pointer;
 
     &.page, &.previous, &.next {
       border-radius: 2px;
+
+      a {
+        color: $text-color;
+      }
 
       &.active {
         background: $link-color;
@@ -94,10 +99,8 @@ ul.pagination-container {
         }
       }
 
-      a {
-        color: $text-color;
-
-        &:hover:not(.active):not(.disabled) {
+      &:hover {
+        a:not(.active):not(.disabled) {
           // TODO: hover state
           color: $link-color;
           padding-bottom: 5px;
