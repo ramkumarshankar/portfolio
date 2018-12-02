@@ -7,7 +7,7 @@
         <loading-indicator :loading="loading"/>
         <projects-grid :projects="projects"/>
       </section>
-      <pagination :numPages=3 />
+      <pagination :numPages=numPages :activePage=activePage />
     </div>
   </div>
 </template>
@@ -37,7 +37,9 @@ export default {
   data() {
     return {
       loading: false,
-      projects: []
+      projects: [],
+      numPages: 0,
+      activePage: 0
     };
   },
   methods: {
@@ -56,8 +58,9 @@ export default {
           orderings: "[document.last_publication_date desc]"
         })
         .then(response => {
-          // console.log(response);
+          console.log(response);
           this.setProgress(95);
+          this.setupPagination(response);
           this.buildProjectsList(response.results);
           this.loading = false;
         });
@@ -115,6 +118,10 @@ export default {
           });
         }
       });
+    },
+    setupPagination(response) {
+        this.numPages = response.total_pages;
+        this.activePage = response.page;
     },
     startProgress() {
       this.$Progress.start();
