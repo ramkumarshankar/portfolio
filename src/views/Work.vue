@@ -7,7 +7,7 @@
         <loading-indicator :loading="loading"/>
         <projects-grid :projects="projects"/>
       </section>
-      <pagination :numPages=numPages :activePage=activePage @pageChanged="retrievePage"/>
+      <pagination :numPages="numPages" :activePage="activePage" @pageChanged="retrievePage"/>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
       numPages: 0,
       activePage: 0,
       pageSize: 9,
-      selectedTag: ''
+      selectedTag: ""
     };
   },
   methods: {
@@ -50,19 +50,8 @@ export default {
       this.loading = true;
       this.startProgress();
       this.$prismic.client
-        .query(this.$prismic.Predicates.at("document.type", "project"), {
-          fetch: [
-            "project.title",
-            "project.short_description",
-            "project.image",
-            "project.link"
-          ],
-          orderings: "[document.last_publication_date desc]",
-          pageSize: this.pageSize,
-          page: this.activePage
-        })
+        .query(this.$prismic.Predicates.at("document.type", "project"), this.defaultQueryParams())
         .then(response => {
-          console.log(response);
           this.setProgress(95);
           this.setupPagination(response);
           this.buildProjectsList(response.results);
@@ -80,17 +69,7 @@ export default {
       } else {
         this.startProgress();
         this.$prismic.client
-          .query(this.$prismic.Predicates.at("document.tags", [tag]), {
-            fetch: [
-              "project.title",
-              "project.short_description",
-              "project.image",
-              "project.link"
-            ],
-            orderings: "[document.last_publication_date desc]",
-            pageSize: this.pageSize,
-            page: this.activePage
-          })
+          .query(this.$prismic.Predicates.at("document.tags", [tag]), this.defaultQueryParams())
           .then(response => {
             this.setProgress(95);
             this.setupPagination(response);
@@ -139,9 +118,22 @@ export default {
       this.activePage = page;
       this.retrieveProjects(this.selectedTag);
     },
+    defaultQueryParams() {
+      return {
+        fetch: [
+          "project.title",
+          "project.short_description",
+          "project.image",
+          "project.link"
+        ],
+        orderings: "[document.last_publication_date desc]",
+        pageSize: this.pageSize,
+        page: this.activePage
+      };
+    },
     setupPagination(response) {
-        this.numPages = response.total_pages;
-        this.activePage = response.page;
+      this.numPages = response.total_pages;
+      this.activePage = response.page;
     },
     startProgress() {
       this.$Progress.start();
