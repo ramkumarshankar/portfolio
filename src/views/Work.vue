@@ -7,7 +7,7 @@
         <loading-indicator :loading="loading"/>
         <projects-grid :projects="projects"/>
       </section>
-      <pagination :numPages=numPages :activePage=activePage />
+      <pagination :numPages=numPages :activePage=activePage @pageChanged="retrievePage"/>
     </div>
   </div>
 </template>
@@ -66,16 +66,20 @@ export default {
           this.loading = false;
         });
     },
+    retrievePage(page) {
+      console.log('page changed - ' + page);
+    },
     retrieveProjects(tag) {
       // Initialise progress bar
       this.setProgress(0);
+      this.selectedTag = tag;
       this.loading = true;
       if (tag === "all") {
         this.getContent();
       } else {
         this.startProgress();
         this.$prismic.client
-          .query(this.$prismic.Predicates.at("document.tags", [tag]), {
+          .query(this.$prismic.Predicates.at("document.tags", [this.selectedTag]), {
             fetch: [
               "project.title",
               "project.short_description",
@@ -86,6 +90,7 @@ export default {
           })
           .then(response => {
             this.setProgress(95);
+            this.setupPagination(response);
             this.buildProjectsList(response.results);
             this.loading = false;
           });
