@@ -1,6 +1,9 @@
 <template>
   <ul v-show="numPages > 1" class="pagination-container">
-    <li @click="updatePage('previous')" :class="'previous ' + ((activePage === 1) ? 'disabled' : '')">
+    <li
+      @click="updatePage('previous')"
+      :class="'previous ' + ((activePage === 1) ? 'disabled' : '')"
+    >
       <a>&#8249;</a>
     </li>
     <li
@@ -11,7 +14,10 @@
     >
       <a :class="((activePage === item.name) ? 'active' : '')">{{ item.name }}</a>
     </li>
-    <li @click="updatePage('next')" :class="'next ' + ((activePage === numPages) ? 'disabled' : '')">
+    <li
+      @click="updatePage('next')"
+      :class="'next ' + ((activePage === numPages) ? 'disabled' : '')"
+    >
       <a>&#8250;</a>
     </li>
   </ul>
@@ -51,14 +57,13 @@ export default {
       if (this.activePage === page) {
         return;
       }
-      if (page === 'previous'){
+      if (page === "previous") {
         if (this.activePage === 1) {
           return;
         } else {
           this.$emit("pageChanged", this.activePage - 1);
         }
-      }
-      else if (page === 'next'){
+      } else if (page === "next") {
         if (this.activePage === this.numPages) {
           return;
         } else {
@@ -66,7 +71,7 @@ export default {
         }
       } else {
         this.$emit("pageChanged", page);
-      } 
+      }
     }
   }
 };
