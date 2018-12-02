@@ -39,7 +39,8 @@ export default {
       loading: false,
       projects: [],
       numPages: 0,
-      activePage: 0
+      activePage: 0,
+      selectedTag: ''
     };
   },
   methods: {
@@ -134,6 +135,7 @@ export default {
     }
   },
   created() {
+    this.selectedTag = "all";
     this.getContent();
   }
 };
