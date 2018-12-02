@@ -1,8 +1,7 @@
 <template>
   <ul v-show="numPages > 1" class="pagination-container">
-    <li class="previous">
-      <a v-if="activePage === 1" class="disabled">&#8249;</a>
-      <a v-else href="#">&#8249;</a>
+    <li @click="updatePage('previous')" :class="'previous ' + ((activePage === 1) ? 'disabled' : '')">
+      <a>&#8249;</a>
     </li>
     <li
       v-for="(item, index) in pages"
@@ -12,9 +11,8 @@
     >
       <a :class="((activePage === item.name) ? 'active' : '')">{{ item.name }}</a>
     </li>
-    <li class="next">
-      <a v-if="activePage === numPages" class="disabled">&#8250;</a>
-      <a v-else href="#" disabled>&#8250;</a>
+    <li @click="updatePage('next')" :class="'next ' + ((activePage === numPages) ? 'disabled' : '')">
+      <a>&#8250;</a>
     </li>
   </ul>
 </template>
@@ -51,11 +49,24 @@ export default {
   methods: {
     updatePage(page) {
       if (this.activePage === page) {
-        console.log('same page - returning');
         return;
       }
-      this.$emit("pageChanged", page);
-      // TODO: emit event to reload content
+      if (page === 'previous'){
+        if (this.activePage === 1) {
+          return;
+        } else {
+          this.$emit("pageChanged", this.activePage - 1);
+        }
+      }
+      else if (page === 'next'){
+        if (this.activePage === this.numPages) {
+          return;
+        } else {
+          this.$emit("pageChanged", this.activePage + 1);
+        }
+      } else {
+        this.$emit("pageChanged", page);
+      } 
     }
   }
 };
@@ -67,16 +78,12 @@ export default {
 a {
   font-weight: bold;
   font-size: 0.8em;
-
-  &.disabled {
-    opacity: 0.3;
-  }
 }
 
 ul.pagination-container {
   text-align: center;
   display: block;
-  margin: 20px 0px;
+  margin: 40px 0px;
 
   li {
     padding: 5px 12px;
@@ -84,7 +91,32 @@ ul.pagination-container {
     margin: 0px 5px;
     cursor: pointer;
 
-    &.page, &.previous, &.next {
+    &.disabled {
+      opacity: 0.3;
+    }
+
+    &.previous, &.next {
+      a {
+        color: $text-color;
+      }
+    }
+
+    &.previous:not(.disabled), &.next:not(.disabled) {
+      a {
+        color: $text-color;
+      }
+
+      &:hover {
+        a:not(.active):not(.disabled) {
+          color: $link-color;
+          padding-bottom: 5px;
+          box-shadow: inset 0px -2px 0 0 $link-color;
+          transition: box-shadow 0.2s ease-out;
+        }
+      }
+    }
+
+    &.page {
       border-radius: 2px;
 
       a {
@@ -101,7 +133,6 @@ ul.pagination-container {
 
       &:hover {
         a:not(.active):not(.disabled) {
-          // TODO: hover state
           color: $link-color;
           padding-bottom: 5px;
           box-shadow: inset 0px -2px 0 0 $link-color;
