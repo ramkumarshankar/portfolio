@@ -17,9 +17,14 @@ Vue.config.productionTip = false
 
 Vue.use(Meta)
 
+const accessToken = process.env.VUE_APP_API_TOKEN
+
 Vue.use(PrismicVue, {
   endpoint: 'https://ramkumarshankar.cdn.prismic.io/api/v2',
-  linkResolver
+  linkResolver,
+  apiOptions: {
+    accessToken
+  }
 })
 
 Vue.use(VueProgressBar, {
