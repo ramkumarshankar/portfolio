@@ -1,17 +1,25 @@
 <template>
   <transition-group name="projectlist" tag="div" class="projects">
-    <project-tile v-if="projects" v-for="(item, index) in projects" :featured ="index === 0" :key="'project-item-' + index"
-    :title="$prismic.richTextAsPlain(item.title)" :description="$prismic.richTextAsPlain(item.short_description)" :image="item.image" :link="item.link"
-    :tags="item.tags" />
+    <project-tile
+      v-if="projects"
+      v-for="(item, index) in projects"
+      :featured="index === 0"
+      :key="'project-item-' + index"
+      :title="$prismic.richTextAsPlain(item.title)"
+      :description="$prismic.richTextAsPlain(item.short_description)"
+      :image="item.image"
+      :link="item.link"
+      :tags="item.tags"
+    />
   </transition-group>
 </template>
 
 <script>
-import ProjectTile from '@/components/ProjectTile.vue'
-import LoadingIndicator from '@/components/LoadingIndicator.vue'
+import ProjectTile from "@/components/ProjectTile.vue";
+import LoadingIndicator from "@/components/LoadingIndicator.vue";
 
 export default {
-  name: 'ProjectGrid',
+  name: "ProjectGrid",
   props: {
     projects: Array
   },
@@ -19,38 +27,44 @@ export default {
     ProjectTile,
     LoadingIndicator
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-.projects
-  display: grid
-  grid-template-columns: 0.5fr 0.5fr
-  column-gap: 20px
-  grid-column-gap: 20px
-  row-gap: 30px
-  grid-row-gap: 30px
-  margin-bottom:30px
+.projects {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  column-gap: 20px;
+  grid-column-gap: 20px;
+  row-gap: 30px;
+  grid-row-gap: 30px;
+  margin-bottom: 30px;
 
-  @media screen and (max-width: 600px)
-    grid-template-columns: 1fr !important
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr !important;
+  }
+}
 
-.featured
-  grid-column-start: 1
-  grid-column-end: 3
+.featured {
+  grid-column-start: 1;
+  grid-column-end: 3;
 
-  @media screen and (max-width: 600px)
-    grid-column-start: 1
-    grid-column-end: 2
+  @media screen and (max-width: 600px) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
 
-.projectlist-enter-active, .projectlist-leave-active
+.projectlist-enter-active, .projectlist-leave-active {
   transition: all 0.3s;
+}
 
-.projectlist-enter, .projectlist-leave-to
+.projectlist-enter, .projectlist-leave-to {
   opacity: 0;
-  transform: scale3d(0.6, 0.6, 0.6)
+  transform: scale3d(0.6, 0.6, 0.6);
+}
 
-.projectlist-move
+.projectlist-move {
   transition: transform 0.5s;
-
+}
 </style>

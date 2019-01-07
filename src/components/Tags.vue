@@ -1,48 +1,48 @@
 <template>
   <div class="tags">
-    <span class="tag" v-for="(tag, index) in displayedTags" v-bind:key="index">
-      {{ tag }}
-    </span>
+    <span class="tag" v-for="(tag, index) in displayedTags" v-bind:key="index">{{ tag }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Tags',
+  name: "Tags",
   props: {
     tags: Array
   },
   computed: {
-    displayedTags () {
+    displayedTags() {
       if (this.tags) {
-        let displayedTags = this.tags
-        let index = displayedTags.indexOf('featured')
+        let displayedTags = this.tags;
+        let index = displayedTags.indexOf("featured");
         if (index !== -1) {
-          displayedTags.splice(index, 1)
+          displayedTags.splice(index, 1);
         }
-        return displayedTags
+        return displayedTags;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-.tags
+.tags {
   // background: transparent
-  display: flex
-  flex-wrap: wrap
+  display: flex;
+  flex-wrap: wrap;
+}
 
-.tag
+.tag {
   // display: inline-block
-  padding: 5px 10px
-  margin-top: 5px
-  margin-right: 10px
-  font-size: 0.75em
-  text-transform: uppercase
-  font-weight: 700
-  background-color: #4A4A4A
-  color: #FFF
-  width: auto !important
-  border-radius 2px
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-color: #4A4A4A;
+  color: #FFF;
+  width: auto !important;
+  border-radius: 2px;
+}
 </style>

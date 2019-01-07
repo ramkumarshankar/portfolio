@@ -21,17 +21,20 @@ const router = new Router({
     {
       path: "/work/:slug",
       name: "project",
-      component: () => import(/* webpackChunkName: "project" */ "./views/Project.vue")
+      component: () =>
+        import(/* webpackChunkName: "project" */ "./views/Project.vue")
     },
     {
       path: "/about",
       name: "about",
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
       path: "/contact",
       name: "contact",
-      component: () => import(/* webpackChunkName: "contact" */ "./views/Contact.vue")
+      component: () =>
+        import(/* webpackChunkName: "contact" */ "./views/Contact.vue")
     }
   ]
 });
