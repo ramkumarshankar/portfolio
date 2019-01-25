@@ -74,9 +74,6 @@ export default {
     },
     handleSubmit() {
       let dataToSubmit = Object.assign({}, this.form);
-      if (!dataToSubmit.botfield) {
-        delete dataToSubmit["botfield"];
-      }
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
