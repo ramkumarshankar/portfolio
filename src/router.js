@@ -35,6 +35,12 @@ const router = new Router({
       name: "contact",
       component: () =>
         import(/* webpackChunkName: "contact" */ "./views/Contact.vue")
+    },
+    {
+      path: "/preview",
+      name: "preview",
+      component: () =>
+        import(/* webpackChunkName: "preview" */ "./views/Preview.vue")
     }
   ]
 });
