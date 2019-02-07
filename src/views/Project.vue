@@ -43,6 +43,13 @@
               :field="item.highlight"
             />
           </template>
+          <template v-else-if="slice.slice_type === 'video'">
+            <video-embed
+              v-for="(item, index) in slice.items"
+              :key="'videoslice-' + index"
+              :htmlContent="item.video.html"
+            />
+          </template>
         </section>
       </section>
     </div>
@@ -52,6 +59,7 @@
 <script>
 import LoadingIndicator from "@/components/LoadingIndicator.vue";
 import TextSlice from "@/components/TextSlice.vue";
+import VideoEmbed from "@/components/VideoEmbed.vue";
 
 export default {
   name: "Project",
@@ -84,7 +92,8 @@ export default {
   },
   components: {
     LoadingIndicator,
-    TextSlice
+    TextSlice,
+    VideoEmbed
   },
   methods: {
     getContent() {
