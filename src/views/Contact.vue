@@ -7,7 +7,10 @@
         <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="botfield" @submit.prevent="handleSubmit">
           <div class="form-input">
             <input type="hidden" name="form-name" value="contact">
-            <input type="hidden" name="botfield" v-model="form.botfield">
+            <div style="display: none">
+              <label for="botfield">Don’t fill this out if you're human</label>
+              <input name="botfield" v-model="form.botfield">
+            </div>
             <div>
               <label for="name">Name</label>
               <input type="text" name="name" v-model="form.name">
