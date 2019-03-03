@@ -12,7 +12,8 @@
           <span>{{ $prismic.richTextAsPlain(this.ctaTitle) }}</span>
         </prismic-link>
       </div>
-      <prismic-image class="title-image" :field="titleImage"/>
+      <project-card v-if="titleImage" :title-image="titleImage" :project-card="projectCard"/>
+
       <section class="project-detail">
         <loading-indicator :loading="loading"/>
         <section
@@ -57,6 +58,7 @@
 </template>
 
 <script>
+import ProjectCard from "@/components/ProjectCard.vue";
 import LoadingIndicator from "@/components/LoadingIndicator.vue";
 import TextSlice from "@/components/TextSlice.vue";
 import VideoEmbed from "@/components/VideoEmbed.vue";
@@ -84,7 +86,8 @@ export default {
       tags: "",
       title: "",
       description: "",
-      titleImage: "",
+      titleImage: null,
+      projectCard: [],
       ctaTitle: null,
       ctaLink: null,
       slices: []
@@ -92,6 +95,7 @@ export default {
   },
   components: {
     LoadingIndicator,
+    ProjectCard,
     TextSlice,
     VideoEmbed
   },
@@ -105,6 +109,7 @@ export default {
         this.setProgress(95);
         this.title = document.data.title;
         this.description = document.data.short_description;
+        this.projectCard = document.data.project_card;
         this.titleImage = document.data.image;
         this.ctaLink = document.data.cta_link;
         this.ctaTitle = document.data.cta_text;

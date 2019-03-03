@@ -27,7 +27,6 @@ export default {
 
 <style lang="stylus" scoped>
 .tags {
-  // background: transparent
   display: flex;
   flex-wrap: wrap;
 }
