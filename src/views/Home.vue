@@ -23,7 +23,6 @@
 import Hero from "@/components/Hero.vue";
 import LoadingIndicator from "@/components/LoadingIndicator.vue";
 import ProjectsGrid from "@/components/ProjectsGrid.vue";
-import ProjectTile from "@/components/ProjectTile.vue";
 import TeachingSection from "@/components/TeachingSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 
@@ -58,7 +57,6 @@ export default {
     Hero,
     LoadingIndicator,
     ProjectsGrid,
-    ProjectTile,
     TeachingSection,
     ContactSection
   },
